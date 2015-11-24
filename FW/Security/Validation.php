@@ -4,7 +4,7 @@ namespace FW\Security;
 
 use FW\App;
 
-class Validation {
+class Validation implements IValidator{
 
     private $_rules = array();
     private $_errors = array();
@@ -97,8 +97,16 @@ class Validation {
         return ($val1 > $val2);
     }
 
+    public static function gtOrEqual($val1, $val2) {
+        return ($val1 >= $val2);
+    }
+
     public static function lt($val1, $val2) {
         return ($val1 < $val2);
+    }
+
+    public static function ltOrEqual($val1, $val2) {
+        return ($val1 <= $val2);
     }
 
     public static function alpha($val1) {
@@ -115,6 +123,10 @@ class Validation {
 
     public static function numeric($val1) {
         return is_numeric($val1);
+    }
+
+    public static function int($val1) {
+        return is_int($val1);
     }
 
     public static function email($val1) {

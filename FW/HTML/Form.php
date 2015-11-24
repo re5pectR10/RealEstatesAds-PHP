@@ -148,6 +148,7 @@ class Form {
 
     private static function getAttributesAsString(array $attr = array()) {
         $attributes = '';
+        unset($attr[null]);
         foreach($attr as $key => $value) {
             $attributes .= ' ' . $key . '="' . $value . '"';
         }
