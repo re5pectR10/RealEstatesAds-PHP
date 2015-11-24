@@ -53,16 +53,28 @@ use \FW\Session\Session;
                             ) . 'Furnished', array('class' => 'control-label')) ?>
                     </div>
                     <div class="radio">
-                        <?= Form::label(Form::radio(array('name' => 'is_furnished', 'value' => 0)) . 'Unfurnished', array('class' => 'control-label')) ?>
+                        <?= Form::label(Form::radio(array(
+                                'name' => 'is_furnished',
+                                'value' => 0,
+                                ((isset($estate) && $estate['is_furnished'] != 1) || (isset(Session::oldInput()['is_furnished']) && Session::oldInput()['is_furnished'] != 1)) ? 'checked' : '' => '')
+                            ) . 'Unfurnished', array('class' => 'control-label')) ?>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="radio">
-                        <?= Form::label(Form::radio(array('name' => 'ad_type', 'value' => 1)) . 'For Sale', array('class' => 'control-label')) ?>
+                        <?= Form::label(Form::radio(array(
+                                'name' => 'ad_type',
+                                'value' => 1,
+                                ((isset($estate) && $estate['ad_type'] == 1) || Session::oldInput()['ad_type'] == 1) ? 'checked' : '' => '')
+                            ) . 'For Sale', array('class' => 'control-label')) ?>
                     </div>
                     <div class="radio">
-                        <?= Form::label(Form::radio(array('name' => 'ad_type', 'value' => 0)) . 'For Rent', array('class' => 'control-label')) ?>
+                        <?= Form::label(Form::radio(array(
+                                'name' => 'ad_type',
+                                'value' => 0,
+                                ((isset($estate) && $estate['ad_type'] != 1) || (isset(Session::oldInput()['ad_type']) && Session::oldInput()['ad_type'] != 1)) ? 'checked' : '' => '')
+                            ) . 'For Rent', array('class' => 'control-label')) ?>
                     </div>
                 </div>
 

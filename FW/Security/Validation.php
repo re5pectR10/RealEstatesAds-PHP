@@ -126,7 +126,7 @@ class Validation implements IValidator{
     }
 
     public static function int($val1) {
-        return is_int($val1);
+        return ctype_digit($val1) || is_int($val1);
     }
 
     public static function email($val1) {

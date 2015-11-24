@@ -32,7 +32,13 @@ class InputData {
                     if (in_array($key, $this->except)) {
                         $this->_post[$key] = $value;
                     } else {
-                        $this->_post[$key] = Common::xss_clean($value);
+                        if(is_array($value)){
+                            foreach($value as $v){
+                                $this->_post[$key][] = Common::xss_clean($v);
+                            }
+                        }else {
+                            $this->_post[$key] = Common::xss_clean($value);
+                        }
                     }
                 }
             } else {

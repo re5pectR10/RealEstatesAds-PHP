@@ -11,6 +11,20 @@ class Estate extends Model{
         return $this->db->fetchRowAssoc();
     }
 
+    public function getEstates(array $categories, array $cities, array $ad_type, $order_by){
+        $this->db->prepare('select e.id,e.price,e.location,e.area,e.ad_type,e.main_image_id,c.name,cat.name from estates as e join cities as c on c.id=e.city_id join categories as cat on cat.id=e.category_id'
+            . (!(empty($categories) && empty($cities) && empty($ad_type)) ? ' where ' : '')
+            . (empty($categories) ? '' : 'category_id in (' . join(',', array_fill(0, count($categories), '?')) . ')')
+            . (empty($categories) || empty($cities) ? '' : ' and ')
+            . (empty($cities) ? '' : 'city_id in (' . join(',', array_fill(0, count($cities), '?')) . ')')
+            . ((empty($categories) && empty($cities)) || empty($ad_type) ? '' : ' and ')
+            . (empty($ad_type) ? '' : 'ad_type in (' . join(',', array_fill(0, count($ad_type), '?')) . ')')
+            . ' ORDER BY ' . $order_by
+        );
+        $this->db->execute(array_merge($categories, $cities, $ad_type));
+        return $this->db->fetchAllAssoc();
+    }
+
     public function getCities() {
         $this->db->prepare('select id,name from cities');
         $this->db->execute();
@@ -24,7 +38,7 @@ class Estate extends Model{
     }
 
     public function add($location, $price, $area, $floor, $isFurnished, $description, $phone, $categoryId, $cityId, $adType, $mainImageId, $createdAt) {
-        $this->db->prepare('insert into estates(location, price, area, floor, is_furnished, description, phone, category_id, city_id, ad_type, main_image_id, created_at) values(?,?,?,?,?,?,?,?,?,?,?,?,?)');
+        $this->db->prepare('insert into estates(location, price, area, floor, is_furnished, description, phone, category_id, city_id, ad_type, main_image_id, created_at) values(?,?,?,?,?,?,?,?,?,?,?,?)');
         $this->db->execute(array($location, $price, $area, $floor, $isFurnished, $description, $phone, $categoryId, $cityId, $adType, $mainImageId, $createdAt));
         return $this->db->getAffectedRows();
     }

@@ -12,5 +12,6 @@ return array(
     'gtOrEqual' => '{NAME} is smaller than {PARAM}',
     'ltOrEqual' => '{NAME} is bigger than {PARAM}',
     'gt' => '{NAME} is smaller or equal than {PARAM}',
-    'lt' => '{NAME} is bigger or equal than {PARAM}'
+    'lt' => '{NAME} is bigger or equal than {PARAM}',
+    'int' => 'The number must be integer.'
 );
