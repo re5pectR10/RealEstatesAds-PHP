@@ -44,6 +44,13 @@ class Common {
         return self::getBaseURL();
     }
 
+    public static function getPublicFilesDir(){
+        $arr = explode(DIRECTORY_SEPARATOR, __DIR__);
+        $arr[count($arr) - 2] = 'app';
+        $arr[count($arr) - 1] = 'public' . DIRECTORY_SEPARATOR;
+        return join(DIRECTORY_SEPARATOR, $arr);
+    }
+
     /**
      * Code is taken from https://gist.github.com/1098477
      * @param type $data

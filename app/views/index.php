@@ -2,12 +2,13 @@
 use \FW\View\View;
 use \FW\Helpers\Common;
 use \FW\HTML\Form;
+use \FW\Security\Auth;
 ?>
 <?= View::getLayoutData('header') ?>
 
     <!-- Page Content -->
     <div class="container">
-        <?= Form::open(array('class' => 'form-horizontal')) ?>
+        <?= Form::open(array('class' => 'form-horizontal','method'=>'GET'), false) ?>
 
         <div class="row">
 
@@ -65,37 +66,166 @@ use \FW\HTML\Form;
 
             </div>
 
-            <div id="advanced-search" class="collapse row">
-                <div class="col-md-9">
+            <div id="advanced-search" class="collapse">
 
-                    <div class="col-md-2">
-                        <?= Form::label('Starting Price', array('for' => 'start_price', 'class' => 'control-label')) ?>
+                <div class="row">
+
+                    <div class="col-md-5">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?= Form::label('Starting Price', array('for' => 'start_price', 'class' => 'control-label')) ?>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <?= Form::number(array('name' => 'start_price', 'id' => 'start_price', 'class' => 'form-control')) ?>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?= Form::label('End Price', array('for' => 'end_price', 'class' => 'control-label')) ?>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <?= Form::number(array('name' => 'end_price', 'id' => 'end_price', 'class' => 'form-control')) ?>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="col-md-2">
-                        <?= Form::number(array('name' => 'start_price', 'id' => 'start_price', 'class' => 'form-control')) ?>
+                    <div class="col-md-5 col-md-offset-2">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?= Form::label('Starting Area', array('for' => 'start_area', 'class' => 'control-label')) ?>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <?= Form::number(array('name' => 'start_area', 'id' => 'start_area', 'class' => 'form-control')) ?>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?= Form::label('End Area', array('for' => 'end_area', 'class' => 'control-label')) ?>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <?= Form::number(array('name' => 'end_area', 'id' => 'end_area', 'class' => 'form-control')) ?>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?= Form::label('Location', array('for' => 'location', 'class' => 'control-label')) ?>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <?= Form::text(array('name' => 'location', 'id' => 'location', 'class' => 'form-control')) ?>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="col-md-2">
-                        <?= Form::label('End Price', array('for' => 'start_price', 'class' => 'control-label')) ?>
-                    </div>
+                    <div class="col-md-5 col-md-offset-2">
 
-                    <div class="col-md-2">
-                        <?= Form::number(array('name' => 'end_price', 'id' => 'start_price', 'class' => 'form-control')) ?>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?= Form::label('Starting Floor', array('for' => 'start_floor', 'class' => 'control-label')) ?>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <?= Form::number(array('name' => 'start_floor', 'id' => 'start_floor', 'class' => 'form-control')) ?>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <?= Form::label('End Floor', array('for' => 'end_floor', 'class' => 'control-label')) ?>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <?= Form::number(array('name' => 'end_floor', 'id' => 'end_floor', 'class' => 'form-control')) ?>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
+
+                <div class="row">
+
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <div class="radio">
+                                <?= Form::label(Form::radio(array(
+                                            'name' => 'furnished',
+                                            'value' => 1))
+                                    . 'Unfurnished', array('class' => 'control-label')) ?>
+                            </div>
+                            <div class="radio">
+                                <?= Form::label(Form::radio(array(
+                                        'name' => 'furnished',
+                                        'value' => 2))
+                                    . 'Furnished', array('class' => 'control-label')) ?>
+                            </div>
+                            <div class="radio">
+                                <?= Form::label(Form::radio(array(
+                                        'name' => 'furnished',
+                                        'value' => 3))
+                                    . 'Both', array('class' => 'control-label')) ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 col-md-offset-2">
+
+                        <div class="form-group">
+                                <div class="checkbox">
+                                    <?= Form::label(Form::check(array('name' => 'has_image', 'value' => 1)) . 'Has Image ?', array('class' => 'control-label')) ?>
+                                </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
         <?= Form::close() ?>
 
+        <div class="list-group">
         <?php foreach($estates as $e): ?>
-            <div class="row">
-                <h4><?= $e['location'] ?></h4>
-            </div>
+            <a class="list-group-item" href="<?= Common::getBaseURL() ?>/estate/<?= $e['id'] ?>">
+                <img style="max-width: 150px;max-height: 100px" src="<?= $e['path'] ?>" alt="No Image">
+                <h3 class="pull-right"><?= $e['price'] ?> EUR</h3>
+                <h5>ID: <?= $e['id'] ?></h5>
+                <address><?= $e['city'] ?>: <?= $e['location'] ?></address>
+                <p>Category: <?= $e['category'] ?></p>
+                <h4><?= $e['area'] ?> m2 (<?= $e['ad_type'] == 1 ? 'For Sale' : 'For Rent' ?>)</h4>
+                <?php if(Auth::isUserInRole(array('admin'))): ?>
+                    <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/estate/<?= $e['id'] ?>/edit">Edit</a>
+                <?php endif ?>
+            </a>
         <?php endforeach; ?>
+        </div>
 
     </div>
 

@@ -8,6 +8,7 @@ DependencyProvider::inject('Controllers\CityController', 'city', null, 'Models\C
 DependencyProvider::inject('Controllers\EstateController', 'estate', null, 'Models\Estate');
 DependencyProvider::inject('Controllers\EstateController', 'category', null, 'Models\Category');
 DependencyProvider::inject('Controllers\EstateController', 'city', null, 'Models\City');
+DependencyProvider::inject('Controllers\EstateController', 'image', null, 'Models\Image');
 
 DependencyProvider::inject('Controllers\AdminController', 'user', null, 'Models\User');
 

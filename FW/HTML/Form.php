@@ -7,12 +7,12 @@ use FW\Security\CSRF;
 
 class Form {
 
-    public static function open(array $options = array()) {
+    public static function open(array $options = array(), $enableCsrf = true) {
         if (!array_key_exists('method', $options)) {
             $options['method'] = 'POST';
         }
 
-        return '<form' . self::getAttributesAsString($options) . '>' . self::csrf();
+        return '<form' . self::getAttributesAsString($options) . '>' . ($enableCsrf ?  self::csrf() : '');
     }
 
     public static function close() {

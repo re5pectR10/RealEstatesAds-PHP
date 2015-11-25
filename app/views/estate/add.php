@@ -12,7 +12,7 @@ use \FW\Session\Session;
 
             <div class="col-md-12">
 
-                <?= Form::open(array('action' => Common::getBaseURL().$action, 'class' => 'form-horizontal')) ?>
+                <?= Form::open(array('enctype' => 'multipart/form-data', 'action' => Common::getBaseURL().$action, 'class' => 'form-horizontal')) ?>
 
                 <div class="form-group">
                     <?= Form::label('Area', array('for' => 'area', 'class' => 'control-label')) ?>
@@ -86,6 +86,11 @@ use \FW\Session\Session;
                 <div class="form-group">
                     <?= Form::label('City', array('class' => 'control-label')) ?>
                     <?= Form::select(array('name' => 'city_id', 'required' => 'true', 'class' => 'form-control'), $cities) ?>
+                </div>
+
+                <div class="form-group">
+                    <?= Form::label('Main Image', array('class' => 'control-label')) ?>
+                    <?= Form::file(array('name' => 'main_image', 'class' => 'btn btn-primary')) ?>
                 </div>
 
                 <?= Form::submit(array('name' => 'submit', 'value' => $submit, 'class' => 'btn btn-success')) ?>

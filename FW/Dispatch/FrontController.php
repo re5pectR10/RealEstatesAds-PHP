@@ -131,7 +131,7 @@ class FrontController implements IDispatcher {
                 $paramClassProperties = $paramClass->getProperties();
                 $paramClassInstance = new $paramClass->name();
                 foreach($paramClassProperties as $property) {
-                    foreach($input->getPost() as $key => $value) {
+                    foreach(array_merge($input->getPost(), $input->getGet(), $_GET, $_FILES) as $key => $value) {
                         $propertyName = $property->name;
                         if ($property->name == $key) {
                             $paramClassInstance->$propertyName = $value;

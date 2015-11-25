@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use FW\Helpers\Common;
 use FW\Input\InputData;
 use FW\Security\IValidator;
 use FW\View\View;
@@ -14,6 +15,7 @@ use Models\SearchBindingModel;
 
 class EstateController {
 
+    private $fileDit;
     /**
      * @var \Models\Estate
      */
@@ -26,6 +28,14 @@ class EstateController {
      * @var \Models\City
      */
     private $city;
+    /**
+     * @var \Models\Image
+     */
+    private $image;
+
+    public function __construct() {
+        $this->fileDit = Common::getPublicFilesDir() . 'images/';
+    }
 
     public function index(SearchBindingModel $searchCriteria){
         $result['title']='Estates';
@@ -34,7 +44,6 @@ class EstateController {
         $result['estates'] = array();
         $result['categories'] = $this->category->getCategories();
         $result['cities'] = $this->city->getCities();
-        var_dump($searchCriteria);
 
         if($searchCriteria->sort_type !== null){
             switch($searchCriteria->sort_type){
@@ -48,11 +57,30 @@ class EstateController {
                     $orderCriteria = 'created_at';
             }
 
+            switch($searchCriteria->furnished){
+                case 1:
+                    $is_furnished = array(0);
+                    break;
+                case 2:
+                    $is_furnished = array(1);
+                    break;
+                default:
+                    $is_furnished = array();
+            }
+
             $result['estates'] = $this->estate->getEstates(
                 isset($searchCriteria->category_id) ? $searchCriteria->category_id : array(),
                 isset($searchCriteria->city_id) ? $searchCriteria->city_id : array(),
                 isset($searchCriteria->ad_type) ? $searchCriteria->ad_type : array(),
-                array('start_price' => $searchCriteria->start_price, 'end_price' => $searchCriteria->end_price),
+                $searchCriteria->start_price,
+                $searchCriteria->end_price,
+                $searchCriteria->start_area,
+                $searchCriteria->end_area,
+                $searchCriteria->start_floor,
+                $searchCriteria->end_floor,
+                $searchCriteria->location,
+                $is_furnished,
+                $searchCriteria->has_image,
                 $orderCriteria
             );
         }
@@ -152,6 +180,15 @@ class EstateController {
             Redirect::back();
         }
 
+        $imageId = null;
+        if(isset($estate->main_image)) {
+            $fileName = trim(com_create_guid(), '{}');
+            $filePath = $this->fileDit . $fileName;
+            if(move_uploaded_file($estate->main_image['tmp_name'], $filePath . '.' . pathinfo($estate->main_image['name'], PATHINFO_EXTENSION))) {
+                $imageId = $this->image->add(Common::getBaseDir() . 'images/' . $fileName . '.' . pathinfo($estate->main_image['name'], PATHINFO_EXTENSION));
+            }
+        }
+
         if ($this->estate->add($estate->location,
                 $estate->price,
                 $estate->area,
@@ -162,13 +199,93 @@ class EstateController {
                 $estate->category_id,
                 $estate->city_id,
                 $estate->ad_type,
-                null,
+                $imageId,
                 date("Y-m-d")) !== 1) {
             Session::setError('something went wrong');
             Redirect::back();
         }
 
         Session::setMessage('Estate Ad is added successfully');
+        Redirect::to('');
+    }
+
+    public function getEdit($id){
+        $estate = $this->estate->getEstate($id);
+        if($estate==null){
+            Session::setError('The estate id is incorrect');
+            Redirect::to('');
+        }
+
+        $result['estate'] = $estate;
+        $result['title']='Edit';
+        $result['action'] = '/admin/estate/' . $estate['id'] . '/edit';
+        $result['submit'] = 'edit';
+        $categories = $this->category->getCategories();
+        foreach($categories as $c) {
+            $currentCategory = array();
+            $currentCategory['text'] = $c['name'];
+            $currentCategory['options'] = array('value' => $c['id']);
+            if(isset($result['estate']) && $result['estate']['category_id'] == $c['id']){
+                $currentCategory['options']['selected'] = 'true';
+            } else if(isset(Session::oldInput()['category_id']) && Session::oldInput()['category_id'] == $c['id']){
+                $currentCategory['options']['selected'] = 'true';
+            }
+
+            $result['categories'][] = $currentCategory;
+        }
+
+        $result['categories'] = isset($result['categories']) ? $result['categories'] : array();
+        $cities = $this->city->getCities();
+        foreach($cities as $c) {
+            $currentCity = array();
+            $currentCity['text'] = $c['name'];
+            $currentCity['options'] = array('value' => $c['id']);
+            if(isset($result['estate']) && $result['estate']['city_id'] == $c['id']){
+                $currentCity['options']['selected'] = 'true';
+            } else if(isset(Session::oldInput()['city_id']) && Session::oldInput()['city_id'] == $c['id']){
+                $currentCity['options']['selected'] = 'true';
+            }
+
+            $result['cities'][] = $currentCity;
+        }
+
+        $result['cities'] = isset($result['cities']) ? $result['cities'] : array();
+        View::make('estate.add', $result);
+        if (Auth::isAuth()) {
+            View::appendTemplateToLayout('topBar', 'top_bar/user');
+        } else {
+            View::appendTemplateToLayout('topBar', 'top_bar/guest');
+        }
+
+        View::appendTemplateToLayout('header', 'includes/header')
+            ->appendTemplateToLayout('footer', 'includes/footer')
+            ->render();
+    }
+
+    public function postEdit($id, EstateAdBindingModel $estate) {
+        $validator = $this->validateEstateAd(new Validation(), $estate);
+
+        if (!$validator->validate()) {
+            Session::setError($validator->getErrors());
+            Redirect::back();
+        }
+
+        if ($this->estate->edit($id, $estate->location,
+                $estate->price,
+                $estate->area,
+                $estate->floor,
+                $estate->is_furnished,
+                $estate->description,
+                $estate->phone,
+                $estate->category_id,
+                $estate->city_id,
+                $estate->ad_type,
+                null) !== 1) {
+            Session::setError('something went wrong');
+            Redirect::back();
+        }
+
+        Session::setMessage('Estate Ad is edited successfully');
         Redirect::to('');
     }
 
@@ -211,6 +328,9 @@ class EstateController {
         $validator->setRule('required', $estate->category_id, null, 'Category');
 
         $validator->setRule('required', $estate->city_id, null, 'City');
+
+        $validator->setRule('mimeTypes', $estate->main_image, 'jpg,gif', 'Main Image');
+        $validator->setRule('lt', $estate->main_image['size'], 20971520, 'Main Image');
 
         return $validator;
     }
