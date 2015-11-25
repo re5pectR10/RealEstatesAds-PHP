@@ -52,6 +52,7 @@ class EstateController {
                 isset($searchCriteria->category_id) ? $searchCriteria->category_id : array(),
                 isset($searchCriteria->city_id) ? $searchCriteria->city_id : array(),
                 isset($searchCriteria->ad_type) ? $searchCriteria->ad_type : array(),
+                array('start_price' => $searchCriteria->start_price, 'end_price' => $searchCriteria->end_price),
                 $orderCriteria
             );
         }
@@ -117,6 +118,7 @@ class EstateController {
             $result['categories'][] = $currentCategory;
         }
 
+        $result['categories'] = isset($result['categories']) ? $result['categories'] : array();
         $cities = $this->city->getCities();
         foreach($cities as $c) {
             $currentCity = array();
@@ -129,6 +131,7 @@ class EstateController {
             $result['cities'][] = $currentCity;
         }
 
+        $result['cities'] = isset($result['cities']) ? $result['cities'] : array();
         View::make('estate.add', $result);
         if (Auth::isAuth()) {
             View::appendTemplateToLayout('topBar', 'top_bar/user');

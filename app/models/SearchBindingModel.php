@@ -9,4 +9,6 @@ class SearchBindingModel {
     public $city_id;
     public $ad_type;
     public $sort_type;
+    public $start_price;
+    public $end_price;
 } 

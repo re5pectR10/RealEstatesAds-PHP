@@ -7,13 +7,13 @@ use \FW\HTML\Form;
 
     <!-- Page Content -->
     <div class="container">
+        <?= Form::open(array('class' => 'form-horizontal')) ?>
 
         <div class="row">
 
             <div class="col-md-12">
 
                 <div class="row">
-                    <?= Form::open(array('class' => 'form-horizontal')) ?>
 
                     <div class="form-group  col-md-3">
                         <h3>Categories</h3>
@@ -42,21 +42,54 @@ use \FW\HTML\Form;
                         <?php endforeach; ?>
                     </div>
 
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <h3>Sort By:</h3>
                         <?= Form::select(array('name' => 'sort_type', 'required' => 'true', 'class' => 'form-control'), $sort_type) ?>
                     </div>
 
-                    <div class="col-md-1">
-                        <?= Form::submit(array('name' => 'submit', 'value' => 'Search', 'class' => 'btn btn-success')) ?>
-                    </div>
-
-                    <?= Form::close() ?>
                 </div>
 
             </div>
 
+            <div class="row">
+
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#advanced-search">
+                        Advanced Search
+                    </button>
+                </div>
+
+                <div class="col-md-2">
+                    <?= Form::submit(array('name' => 'submit', 'value' => 'Search', 'class' => 'btn btn-success')) ?>
+                </div>
+
+            </div>
+
+            <div id="advanced-search" class="collapse row">
+                <div class="col-md-9">
+
+                    <div class="col-md-2">
+                        <?= Form::label('Starting Price', array('for' => 'start_price', 'class' => 'control-label')) ?>
+                    </div>
+
+                    <div class="col-md-2">
+                        <?= Form::number(array('name' => 'start_price', 'id' => 'start_price', 'class' => 'form-control')) ?>
+                    </div>
+
+                    <div class="col-md-2">
+                        <?= Form::label('End Price', array('for' => 'start_price', 'class' => 'control-label')) ?>
+                    </div>
+
+                    <div class="col-md-2">
+                        <?= Form::number(array('name' => 'end_price', 'id' => 'start_price', 'class' => 'form-control')) ?>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
+
+        <?= Form::close() ?>
 
         <?php foreach($estates as $e): ?>
             <div class="row">

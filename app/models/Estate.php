@@ -11,18 +11,31 @@ class Estate extends Model{
         return $this->db->fetchRowAssoc();
     }
 
-    public function getEstates(array $categories, array $cities, array $ad_type, $order_by){
-        $this->db->prepare('select e.id,e.price,e.location,e.area,e.ad_type,e.main_image_id,c.name,cat.name from estates as e join cities as c on c.id=e.city_id join categories as cat on cat.id=e.category_id'
-            . (!(empty($categories) && empty($cities) && empty($ad_type)) ? ' where ' : '')
+    public function getEstates(array $categories, array $cities, array $ad_type, array $price, $order_by){
+        $price = array_filter($price);
+        $this->db->prepare($this->buildGetEstatesQuery($categories, $cities, $ad_type, $price, $order_by));
+        $this->db->execute(array_merge($categories, $cities, $ad_type, array_values($price)));
+        return $this->db->fetchAllAssoc();
+    }
+
+    private function buildGetEstatesQuery(array $categories, array $cities, array $ad_type, array $price, $order_by){
+        $query = 'select e.id,e.price,e.location,e.area,e.ad_type,e.main_image_id,c.name,cat.name from estates as e join cities as c on c.id=e.city_id join categories as cat on cat.id=e.category_id'
+            . (!(empty($categories) && empty($cities) && empty($ad_type) && empty($price)) ? ' where ' : '')
             . (empty($categories) ? '' : 'category_id in (' . join(',', array_fill(0, count($categories), '?')) . ')')
             . (empty($categories) || empty($cities) ? '' : ' and ')
             . (empty($cities) ? '' : 'city_id in (' . join(',', array_fill(0, count($cities), '?')) . ')')
             . ((empty($categories) && empty($cities)) || empty($ad_type) ? '' : ' and ')
-            . (empty($ad_type) ? '' : 'ad_type in (' . join(',', array_fill(0, count($ad_type), '?')) . ')')
-            . ' ORDER BY ' . $order_by
-        );
-        $this->db->execute(array_merge($categories, $cities, $ad_type));
-        return $this->db->fetchAllAssoc();
+            . (empty($ad_type) ? '' : 'ad_type in (' . join(',', array_fill(0, count($ad_type), '?')) . ')');
+
+        if(!empty($price)) {
+            $query .= (empty($categories) && empty($cities) && empty($ad_type) ? '' : ' and ');
+            $query .= (empty($price['start_price']) ? '' : 'price>?');
+            $query .= (count($price) == 2 ? ' and ' : '');
+            $query .= (empty($price['end_price']) ? '' : 'price<?');
+        }
+
+        $query .= ' ORDER BY ' . $order_by;
+        return $query;
     }
 
     public function getCities() {

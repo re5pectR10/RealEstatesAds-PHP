@@ -26,9 +26,24 @@
       <file leaf-file-name="EstateController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/EstateController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="30" selection-start="1586" selection-end="1586" vertical-scroll-proportion="-25.076923" vertical-offset="266" max-vertical-offset="3723">
+            <state line="54" column="79" selection-start="1635" selection-end="1635" vertical-scroll-proportion="-24.076923" vertical-offset="292" max-vertical-offset="3774">
               <folding>
                 <element signature="e#31#54#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Estate.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/Estate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="91" selection-start="597" selection-end="597" vertical-scroll-proportion="0.31812865" vertical-offset="0" max-vertical-offset="1173">
+              <folding>
+                <marker date="1448417187210" expanded="true" signature="121:158" placeholder="select id,na..cities..." />
+                <marker date="1448417187210" expanded="true" signature="2042:2068" placeholder="select id,na..cities..." />
+                <marker date="1448417187210" expanded="true" signature="2214:2243" placeholder="delete from ..." />
+                <marker date="1448417187210" expanded="true" signature="2520:2693" placeholder="insert into ..." />
+                <marker date="1448417187210" expanded="true" signature="2978:3013" placeholder="update citie..." />
               </folding>
             </state>
           </provider>
@@ -37,32 +52,7 @@
       <file leaf-file-name="SearchBindingModel.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/SearchBindingModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="21" selection-start="143" selection-end="143" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="289">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Estate.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/Estate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="38" selection-start="1176" selection-end="1176" vertical-scroll-proportion="0.41754386" vertical-offset="0" max-vertical-offset="952">
-              <folding>
-                <marker date="1448399478384" expanded="true" signature="121:158" placeholder="select id,na..cities..." />
-                <marker date="1448399478384" expanded="true" signature="373:552" placeholder="select e.id,..estates..." />
-                <marker date="1448399478384" expanded="true" signature="1373:1399" placeholder="select id,na..cities..." />
-                <marker date="1448399478384" expanded="true" signature="1545:1574" placeholder="delete from ..." />
-                <marker date="1448399478384" expanded="true" signature="1851:2024" placeholder="insert into ..." />
-                <marker date="1448399478384" expanded="true" signature="2309:2344" placeholder="update citie..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DB.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FW/Database/DB.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="4.769231" vertical-offset="124" max-vertical-offset="1734">
+            <state line="9" column="20" selection-start="121" selection-end="121" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="323">
               <folding />
             </state>
           </provider>
@@ -71,10 +61,9 @@
       <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="36" selection-start="2456" selection-end="2456" vertical-scroll-proportion="-28.961538" vertical-offset="301" max-vertical-offset="1258">
+            <state line="67" column="59" selection-start="2631" selection-end="2631" vertical-scroll-proportion="-14.807693" vertical-offset="754" max-vertical-offset="1819">
               <folding>
                 <element signature="e#6#24#0" expanded="true" />
-                <marker date="1448387397599" expanded="true" signature="2386:2500" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -83,7 +72,7 @@
       <file leaf-file-name="add.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/estate/add.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="14" selection-start="1297" selection-end="1518" vertical-scroll-proportion="-9.0" vertical-offset="208" max-vertical-offset="1717">
+            <state line="22" column="102" selection-start="852" selection-end="880" vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="1717">
               <folding />
             </state>
           </provider>
@@ -106,16 +95,13 @@
         <option value="$PROJECT_DIR$/app/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/app/controllers/CategoryController.php" />
         <option value="$PROJECT_DIR$/app/views/includes/header.php" />
-        <option value="$PROJECT_DIR$/app/models/Category.php" />
         <option value="$PROJECT_DIR$/app/controllers/City.php" />
         <option value="$PROJECT_DIR$/app/models/City.php" />
         <option value="$PROJECT_DIR$/app/controllers/CityController.php" />
         <option value="$PROJECT_DIR$/app/views/city/add.php" />
         <option value="$PROJECT_DIR$/app/views/includes/footer.php" />
-        <option value="$PROJECT_DIR$/app/views/city/index.php" />
         <option value="$PROJECT_DIR$/app/views/admin/roles.php" />
         <option value="$PROJECT_DIR$/app/views/category/add.php" />
-        <option value="$PROJECT_DIR$/app/views/category/index.php" />
         <option value="$PROJECT_DIR$/app/views/user/login.php" />
         <option value="$PROJECT_DIR$/app/views/user/profile.php" />
         <option value="$PROJECT_DIR$/app/views/user/register.php" />
@@ -129,9 +115,12 @@
         <option value="$PROJECT_DIR$/FW/Security/Validation.php" />
         <option value="$PROJECT_DIR$/app/views/estate/add.php" />
         <option value="$PROJECT_DIR$/app/routes.php" />
-        <option value="$PROJECT_DIR$/app/models/SearchBindingModel.php" />
         <option value="$PROJECT_DIR$/FW/Input/InputData.php" />
+        <option value="$PROJECT_DIR$/app/models/Category.php" />
+        <option value="$PROJECT_DIR$/app/views/category/index.php" />
+        <option value="$PROJECT_DIR$/app/views/city/index.php" />
         <option value="$PROJECT_DIR$/app/views/index.php" />
+        <option value="$PROJECT_DIR$/app/models/SearchBindingModel.php" />
         <option value="$PROJECT_DIR$/app/controllers/EstateController.php" />
         <option value="$PROJECT_DIR$/app/models/Estate.php" />
       </list>
@@ -285,6 +274,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="estate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -330,7 +359,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="options.lastSelected" value="Configurable.PHP.Servers" />
+    <property name="options.lastSelected" value="JavaScript.Libraries" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -436,12 +465,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="44" selection-start="1177" selection-end="1177" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="714">
           <folding>
-            <marker date="1448399478384" expanded="true" signature="121:158" placeholder="select id,na..cities..." />
-            <marker date="1448399478384" expanded="true" signature="373:552" placeholder="select e.id,..estates..." />
-            <marker date="1448399478384" expanded="true" signature="1373:1399" placeholder="select id,na..cities..." />
-            <marker date="1448399478384" expanded="true" signature="1545:1574" placeholder="delete from ..." />
-            <marker date="1448399478384" expanded="true" signature="1851:2024" placeholder="insert into ..." />
-            <marker date="1448399478384" expanded="true" signature="2309:2344" placeholder="update citie..." />
+            <marker date="1448417187210" expanded="true" signature="121:158" placeholder="select id,na..cities..." />
+            <marker date="1448417187210" expanded="true" signature="2042:2068" placeholder="select id,na..cities..." />
+            <marker date="1448417187210" expanded="true" signature="2214:2243" placeholder="delete from ..." />
+            <marker date="1448417187210" expanded="true" signature="2520:2693" placeholder="insert into ..." />
+            <marker date="1448417187210" expanded="true" signature="2978:3013" placeholder="update citie..." />
           </folding>
         </state>
       </provider>
@@ -521,13 +549,6 @@
         <state line="37" column="8" selection-start="877" selection-end="1261" vertical-scroll-proportion="-17.26923" vertical-offset="78" max-vertical-offset="1853" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="16" selection-start="17" selection-end="23" vertical-scroll-proportion="0.039170507" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/CategoryController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="32" selection-end="149" vertical-scroll-proportion="0.09792627" vertical-offset="0" max-vertical-offset="1887" />
@@ -548,19 +569,9 @@
         <state line="53" column="0" selection-start="1883" selection-end="1883" vertical-scroll-proportion="0.8824885" vertical-offset="101" max-vertical-offset="986" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/category/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.8029954" vertical-offset="0" max-vertical-offset="868" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/category/add.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="0" selection-start="697" selection-end="697" vertical-scroll-proportion="0.39170507" vertical-offset="0" max-vertical-offset="868" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/city/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="25" selection-start="605" selection-end="605" vertical-scroll-proportion="0.41129032" vertical-offset="0" max-vertical-offset="868" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/user/login.php">
@@ -573,11 +584,6 @@
         <state line="26" column="0" selection-start="893" selection-end="893" vertical-scroll-proportion="0.47004607" vertical-offset="0" max-vertical-offset="868" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/city/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="4" selection-start="0" selection-end="705" vertical-scroll-proportion="0.43087557" vertical-offset="0" max-vertical-offset="868" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/top_bar/user.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="81" selection-start="938" selection-end="938" vertical-scroll-proportion="0.47004607" vertical-offset="0" max-vertical-offset="868" />
@@ -586,13 +592,6 @@
     <entry file="file://$PROJECT_DIR$/app/views/includes/header.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="46" selection-start="1603" selection-end="1603" vertical-scroll-proportion="0.48156682" vertical-offset="160" max-vertical-offset="1054" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/City.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="368" selection-end="368" vertical-scroll-proportion="0.27419356" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/dependencies.php">
@@ -680,40 +679,88 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FW/Database/DB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.14285715" vertical-offset="124" max-vertical-offset="1734">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="33" selection-start="473" selection-end="473" vertical-scroll-proportion="0.35253456" vertical-offset="0" max-vertical-offset="868">
+          <folding>
+            <marker date="1448403144815" expanded="true" signature="-1:-1" placeholder="select id,na..categories..." />
+            <marker date="1448403144815" expanded="true" signature="-1:-1" placeholder="select id,na..categories..." />
+            <marker date="1448403144815" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1448403144815" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1448403144815" expanded="true" signature="-1:-1" placeholder="update categ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/City.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="29" selection-start="368" selection-end="368" vertical-scroll-proportion="0.27419356" vertical-offset="0" max-vertical-offset="868">
+          <folding>
+            <marker date="1448302921241" expanded="true" signature="-1:-1" placeholder="select id,na..cities..." />
+            <marker date="1448302921241" expanded="true" signature="-1:-1" placeholder="select id,na..cities..." />
+            <marker date="1448302921241" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1448302921241" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1448302921241" expanded="true" signature="-1:-1" placeholder="update citie..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/category/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="77" selection-start="983" selection-end="1026" vertical-scroll-proportion="0.55672514" vertical-offset="0" max-vertical-offset="855">
+          <folding>
+            <element signature="e#6#24#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/city/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="35" selection-start="964" selection-end="964" vertical-scroll-proportion="0.5368421" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/city/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="18" selection-start="635" selection-end="635" vertical-scroll-proportion="0.2937788" vertical-offset="0" max-vertical-offset="868">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/estate/add.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="14" selection-start="1297" selection-end="1518" vertical-scroll-proportion="-9.0" vertical-offset="208" max-vertical-offset="1717">
+        <state line="22" column="102" selection-start="852" selection-end="880" vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="1717">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="36" selection-start="2456" selection-end="2456" vertical-scroll-proportion="-28.961538" vertical-offset="301" max-vertical-offset="1258">
+        <state line="67" column="59" selection-start="2631" selection-end="2631" vertical-scroll-proportion="-14.807693" vertical-offset="754" max-vertical-offset="1819">
           <folding>
             <element signature="e#6#24#0" expanded="true" />
-            <marker date="1448387397599" expanded="true" signature="2386:2500" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FW/Database/DB.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="4.769231" vertical-offset="124" max-vertical-offset="1734">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/SearchBindingModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="21" selection-start="143" selection-end="143" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="289">
+        <state line="9" column="20" selection-start="121" selection-end="121" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/EstateController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="30" selection-start="1586" selection-end="1586" vertical-scroll-proportion="-25.076923" vertical-offset="266" max-vertical-offset="3723">
+        <state line="54" column="79" selection-start="1635" selection-end="1635" vertical-scroll-proportion="-24.076923" vertical-offset="292" max-vertical-offset="3774">
           <folding>
             <element signature="e#31#54#0" expanded="true" />
           </folding>
@@ -722,14 +769,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Estate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="38" selection-start="1176" selection-end="1176" vertical-scroll-proportion="0.41754386" vertical-offset="0" max-vertical-offset="952">
+        <state line="16" column="91" selection-start="597" selection-end="597" vertical-scroll-proportion="0.31812865" vertical-offset="0" max-vertical-offset="1173">
           <folding>
-            <marker date="1448399478384" expanded="true" signature="121:158" placeholder="select id,na..cities..." />
-            <marker date="1448399478384" expanded="true" signature="373:552" placeholder="select e.id,..estates..." />
-            <marker date="1448399478384" expanded="true" signature="1373:1399" placeholder="select id,na..cities..." />
-            <marker date="1448399478384" expanded="true" signature="1545:1574" placeholder="delete from ..." />
-            <marker date="1448399478384" expanded="true" signature="1851:2024" placeholder="insert into ..." />
-            <marker date="1448399478384" expanded="true" signature="2309:2344" placeholder="update citie..." />
+            <marker date="1448417187210" expanded="true" signature="121:158" placeholder="select id,na..cities..." />
+            <marker date="1448417187210" expanded="true" signature="2042:2068" placeholder="select id,na..cities..." />
+            <marker date="1448417187210" expanded="true" signature="2214:2243" placeholder="delete from ..." />
+            <marker date="1448417187210" expanded="true" signature="2520:2693" placeholder="insert into ..." />
+            <marker date="1448417187210" expanded="true" signature="2978:3013" placeholder="update citie..." />
           </folding>
         </state>
       </provider>

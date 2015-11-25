@@ -17,11 +17,6 @@ class Category extends Model {
     }
 
     public function delete($id) {
-        $this->db->prepare('select count(*) as c from  products where category_id=?');
-        $this->db->execute(array($id));
-        if ($this->db->fetchRowAssoc()['c'] != 0) {
-            return false;
-        }
         $this->db->prepare('delete from categories where id=?');
         $this->db->execute(array($id));
         return $this->db->getAffectedRows();
