@@ -7,6 +7,7 @@ Route::Group('helppage', array(), function() {
 });
 
 Route::GET('', array('use' => 'EstateController@index'));
+Route::GET('estate/{id:int}', array('use' => 'EstateController@details'));
 
 Route::Group('user', array(), function() {
     Route::GET('', array('use'=>'UserController@getProfile', 'before' => 'auth'));
@@ -50,6 +51,8 @@ Route::Group('admin', array('roles' => 'admin', 'before' => 'auth'), function() 
         Route::GET('/{id:int}/edit', array('use' => 'EstateController@getEdit'));
         Route::POST('/{id:int}/edit', array('use' => 'EstateController@postEdit'));
     });
+
+    Route::GET('/image/delete/{id:int}', array('use' => 'ImageController@delete'));
 });
 
 Route::GET('comment/delete/{id:int}', array('use' => 'CommentController@delete', 'before' => 'auth'));

@@ -13,3 +13,5 @@ DependencyProvider::inject('Controllers\EstateController', 'image', null, 'Model
 DependencyProvider::inject('Controllers\AdminController', 'user', null, 'Models\User');
 
 DependencyProvider::inject('Controllers\UserController', 'user', null, 'Models\User');
+
+DependencyProvider::inject('Controllers\ImageController', 'image', null, 'Models\Image');

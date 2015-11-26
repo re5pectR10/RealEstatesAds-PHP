@@ -20,7 +20,10 @@ use \FW\Security\Auth;
                         <h3>Categories</h3>
                         <?php foreach($categories as $cat): ?>
                             <div class="checkbox">
-                                <?= Form::label(Form::check(array('name' => 'category_id[]', 'value' => $cat['id'])) . $cat['name'], array('class' => 'control-label')) ?>
+                                <?= Form::label(Form::check(array('name' => 'category_id[]',
+                                        'value' => $cat['id'],
+                                        (is_array($search->category_id) && in_array($cat['id'], $search->category_id) ?'checked' :'')=>'')) . $cat['name'],
+                                    array('class' => 'control-label')) ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -212,19 +215,30 @@ use \FW\Security\Auth;
         <?= Form::close() ?>
 
         <div class="list-group">
-        <?php foreach($estates as $e): ?>
-            <a class="list-group-item" href="<?= Common::getBaseURL() ?>/estate/<?= $e['id'] ?>">
-                <img style="max-width: 150px;max-height: 100px" src="<?= $e['path'] ?>" alt="No Image">
-                <h3 class="pull-right"><?= $e['price'] ?> EUR</h3>
-                <h5>ID: <?= $e['id'] ?></h5>
-                <address><?= $e['city'] ?>: <?= $e['location'] ?></address>
-                <p>Category: <?= $e['category'] ?></p>
-                <h4><?= $e['area'] ?> m2 (<?= $e['ad_type'] == 1 ? 'For Sale' : 'For Rent' ?>)</h4>
-                <?php if(Auth::isUserInRole(array('admin'))): ?>
-                    <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/estate/<?= $e['id'] ?>/edit">Edit</a>
-                <?php endif ?>
-            </a>
-        <?php endforeach; ?>
+            <?php /* @var $estates array */ ?>
+            <?php foreach($estates as $e): ?>
+                <div class="list-group-item">
+                    <div class="media">
+
+                        <div class="media-left">
+                            <img style="max-width: 150px;max-height: 100px" src="<?=  Common::getBaseURL() . '/images/' .  $e['name'] ?>" alt="No Image">
+                        </div>
+
+                        <div class="media-body">
+                            <h3 class="pull-right"><?= $e['price'] ?> EUR</h3>
+                            <h5>ID: <?= $e['id'] ?></h5>
+                            <address><?= $e['city'] ?>: <?= $e['location'] ?></address>
+                            <p>Category: <?= $e['category'] ?></p>
+                            <a class="btn bg-success pull-right" href="<?= Common::getBaseURL() ?>/estate/<?= $e['id'] ?>">Details</a>
+                            <h4><?= $e['area'] ?> m2 (<?= $e['ad_type'] == 1 ? 'For Sale' : 'For Rent' ?>)</h4>
+                            <?php if(Auth::isUserInRole(array('admin'))): ?>
+                                <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/estate/<?= $e['id'] ?>/edit">Edit</a>
+                            <?php endif ?>
+                        </div>
+
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
 
     </div>

@@ -91,12 +91,32 @@ use \FW\Session\Session;
                 <div class="form-group">
                     <?= Form::label('Main Image', array('class' => 'control-label')) ?>
                     <?= Form::file(array('name' => 'main_image', 'class' => 'btn btn-primary')) ?>
+                    <?php if(isset($estate['main_image'])): ?>
+                        <img style="max-width: 150px;max-height: 100px" src="<?= Common::getBaseURL() . '/images/' . $estate['main_image'] ?>" alt="No Image">
+                        <a class="btn bg-danger" href="<?= Common::getBaseURL() ?>/admin/image/delete/<?= $estate['main_image_id'] ?>">Delete</a>
+                    <?php endif; ?>
+                </div>
+
+                <div class="form-group">
+                    <?= Form::label('Additional Images', array('class' => 'control-label')) ?>
+                    <?= Form::file(array('name' => 'images[]', 'multiple' => '', 'class' => 'btn btn-primary')) ?>
                 </div>
 
                 <?= Form::submit(array('name' => 'submit', 'value' => $submit, 'class' => 'btn btn-success')) ?>
                 <?= Form::close() ?>
             </div>
 
+        </div>
+
+        <div class="row">
+            <?php if(isset($estate['images'])): ?>
+                <div class="media-bottom">
+                    <?php foreach($estate['images'] as $image): ?>
+                        <img style="max-width: 150px;max-height: 100px" src="<?=  Common::getBaseURL() . '/images/' .  $image['image'] ?>" alt="No Image">
+                        <a class="btn bg-danger" href="<?= Common::getBaseURL() ?>/admin/image/delete/<?= $image['id'] ?>">Delete</a>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif ?>
         </div>
 
     </div>

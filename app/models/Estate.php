@@ -6,7 +6,13 @@ namespace Models;
 class Estate extends Model{
 
     public function getEstate($id) {
-        $this->db->prepare('select id, location, price, area, floor, is_furnished, description, phone, category_id, city_id, ad_type, main_image_id from estates where id=?');
+        $this->db->prepare('select e.id, e.location, e.price, e.area, e.floor, e.is_furnished, e.description, e.phone, c.name as category, s.name as city, e.ad_type, e.main_image_id, i.path as main_image
+            from estates as e
+            join categories as c on c.id=e.category_id
+            join cities as s on s.id=e.city_id
+            left join images as i on i.id=e.main_image_id
+            where e.id=?');
+
         $this->db->execute(array($id));
         return $this->db->fetchRowAssoc();
     }
@@ -88,12 +94,18 @@ class Estate extends Model{
     public function add($location, $price, $area, $floor, $isFurnished, $description, $phone, $categoryId, $cityId, $adType, $mainImageId, $createdAt) {
         $this->db->prepare('insert into estates(location, price, area, floor, is_furnished, description, phone, category_id, city_id, ad_type, main_image_id, created_at) values(?,?,?,?,?,?,?,?,?,?,?,?)');
         $this->db->execute(array($location, $price, $area, $floor, $isFurnished, $description, $phone, $categoryId, $cityId, $adType, $mainImageId, $createdAt));
-        return $this->db->getAffectedRows();
+        return $this->db->getLastInsertId();
     }
 
     public function edit($id, $location, $price, $area, $floor, $isFurnished, $description, $phone, $categoryId, $cityId, $adType, $mainImageId) {
         $this->db->prepare('update estates set location=?,price=?,area=?,floor=?,is_furnished=?,description=?,phone=?,category_id=?,city_id=?,ad_type=?,main_image_id=? where id=?');
         $this->db->execute(array($location, $price, $area, $floor, $isFurnished, $description, $phone, $categoryId, $cityId, $adType, $mainImageId, $id));
         return $this->db->getAffectedRows();
+    }
+
+    public function getMainImageId($id){
+        $this->db->prepare('select main_image_id from estates where id=? and main_image_id is not null');
+        $this->db->execute(array($id));
+        return $this->db->fetchRowAssoc();
     }
 } 

@@ -44,6 +44,7 @@ class EstateController {
         $result['estates'] = array();
         $result['categories'] = $this->category->getCategories();
         $result['cities'] = $this->city->getCities();
+        $result['search'] = $searchCriteria;
 
         if($searchCriteria->sort_type !== null){
             switch($searchCriteria->sort_type){
@@ -130,6 +131,22 @@ class EstateController {
             ->render();
     }
 
+    public function details($id) {
+        $result['estate'] = $this->estate->getEstate($id);
+        $result['estate']['images'] = $this->image->getImagesByEstate($id);
+
+        View::make('estate.details', $result);
+        if (Auth::isAuth()) {
+            View::appendTemplateToLayout('topBar', 'top_bar.user');
+        } else {
+            View::appendTemplateToLayout('topBar', 'top_bar.guest');
+        }
+
+        View::appendTemplateToLayout('header', 'includes.header')
+            ->appendTemplateToLayout('footer', 'includes.footer')
+            ->render();
+    }
+
     public function getAdd() {
         $result['title']='Add';
         $result['action'] = '/admin/estate/add';
@@ -173,6 +190,7 @@ class EstateController {
     }
 
     public function postAdd(EstateAdBindingModel $estate) {
+        $estate->images = $this->reArrayFiles($estate->images);
         $validator = $this->validateEstateAd(new Validation(), $estate);
 
         if (!$validator->validate()) {
@@ -181,32 +199,62 @@ class EstateController {
         }
 
         $imageId = null;
-        if(isset($estate->main_image)) {
-            $fileName = trim(com_create_guid(), '{}');
-            $filePath = $this->fileDit . $fileName;
-            if(move_uploaded_file($estate->main_image['tmp_name'], $filePath . '.' . pathinfo($estate->main_image['name'], PATHINFO_EXTENSION))) {
-                $imageId = $this->image->add(Common::getBaseDir() . 'images/' . $fileName . '.' . pathinfo($estate->main_image['name'], PATHINFO_EXTENSION));
-            }
+        if(isset($estate->main_image) && !empty($estate->main_image['name'])) {
+            $imageId = $this->saveFile($estate->main_image);
         }
 
-        if ($this->estate->add($estate->location,
-                $estate->price,
-                $estate->area,
-                $estate->floor,
-                $estate->is_furnished,
-                $estate->description,
-                $estate->phone,
-                $estate->category_id,
-                $estate->city_id,
-                $estate->ad_type,
-                $imageId,
-                date("Y-m-d")) !== 1) {
+        $estateId =$this->estate->add($estate->location,
+            $estate->price,
+            $estate->area,
+            $estate->floor,
+            $estate->is_furnished,
+            $estate->description,
+            $estate->phone,
+            $estate->category_id,
+            $estate->city_id,
+            $estate->ad_type,
+            $imageId,
+            date("Y-m-d H:i:s"));
+
+        if (empty($estateId)) {
             Session::setError('something went wrong');
             Redirect::back();
         }
 
+        foreach($estate->images as $image) {
+            $imageId = $this->saveFile($image);
+            if(!empty($imageId)) {
+                $this->image->addImageToEstate($estateId, $imageId);
+            }
+        }
+
         Session::setMessage('Estate Ad is added successfully');
         Redirect::to('');
+    }
+
+    function reArrayFiles(&$file_post) {
+
+        $file_ary = array();
+        $file_count = count($file_post['name']);
+        $file_keys = array_keys($file_post);
+
+        for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_ary[$i][$key] = $file_post[$key][$i];
+            }
+        }
+
+        return $file_ary;
+    }
+
+    private function saveFile($file){
+        $fileName = trim(com_create_guid(), '{}');
+        $filePath = $this->fileDit . $fileName;
+        if(move_uploaded_file($file['tmp_name'], $filePath . '.' . pathinfo($file['name'], PATHINFO_EXTENSION))) {
+            return $this->image->add($fileName . '.' . pathinfo($file['name'], PATHINFO_EXTENSION));
+        }
+
+        return false;
     }
 
     public function getEdit($id){
@@ -217,6 +265,7 @@ class EstateController {
         }
 
         $result['estate'] = $estate;
+        $result['estate']['images'] = $this->image->getImagesByEstate($id);
         $result['title']='Edit';
         $result['action'] = '/admin/estate/' . $estate['id'] . '/edit';
         $result['submit'] = 'edit';
@@ -263,11 +312,22 @@ class EstateController {
     }
 
     public function postEdit($id, EstateAdBindingModel $estate) {
+        $estate->images = $this->reArrayFiles($estate->images);
         $validator = $this->validateEstateAd(new Validation(), $estate);
 
         if (!$validator->validate()) {
             Session::setError($validator->getErrors());
             Redirect::back();
+        }
+
+        $imageId = $this->estate->getMainImageId($id)['main_image_id'];
+        if(isset($estate->main_image) && !empty($estate->main_image['name'])) {
+            if(empty($imageId)) {
+                $imageId = $this->saveFile($estate->main_image);
+            } else {
+                Session::setError('You have to delete the existed main image');
+                Redirect::back();
+            }
         }
 
         if ($this->estate->edit($id, $estate->location,
@@ -280,9 +340,16 @@ class EstateController {
                 $estate->category_id,
                 $estate->city_id,
                 $estate->ad_type,
-                null) !== 1) {
+                $imageId) !== 1) {
             Session::setError('something went wrong');
             Redirect::back();
+        }
+
+        foreach($estate->images as $image) {
+            $imageId = $this->saveFile($image);
+            if(!empty($imageId)) {
+                $this->image->addImageToEstate($id, $imageId);
+            }
         }
 
         Session::setMessage('Estate Ad is edited successfully');
@@ -331,6 +398,11 @@ class EstateController {
 
         $validator->setRule('mimeTypes', $estate->main_image, 'jpg,gif', 'Main Image');
         $validator->setRule('lt', $estate->main_image['size'], 20971520, 'Main Image');
+
+        foreach($estate->images as $image) {
+            $validator->setRule('mimeTypes', $image, 'jpg,gif', 'Main Image');
+            $validator->setRule('lt', $image['size'], 20971520, 'Main Image');
+        }
 
         return $validator;
     }

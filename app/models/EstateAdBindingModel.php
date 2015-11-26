@@ -16,4 +16,5 @@ class EstateAdBindingModel {
     public $category_id;
     public $city_id;
     public $main_image;
+    public $images;
 } 
