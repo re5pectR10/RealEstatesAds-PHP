@@ -37,7 +37,7 @@ Route::Group('admin', array('roles' => 'admin', 'before' => 'auth'), function() 
 
     Route::Group('/city', array(), function() {
         Route::GET('/', array('use' => 'CityController@index'));
-        Route::GET('/{id:int}/delete', array('use' => 'CityController@deleteCategory'));
+        Route::GET('/{id:int}/delete', array('use' => 'CityController@deleteCity'));
         Route::GET('/add', array('use' => 'CityController@getAdd'));
         Route::POST('/add', array('use' => 'CityController@postAdd'));
         Route::GET('/{id:int}/edit', array('use' => 'CityController@getEdit'));
@@ -53,6 +53,13 @@ Route::Group('admin', array('roles' => 'admin', 'before' => 'auth'), function() 
     });
 
     Route::GET('/image/delete/{id:int}', array('use' => 'ImageController@delete'));
+
+    Route::GET('/messages', array('use' => 'MessageController@index'));
+    Route::GET('/message/{id:int}', array('use' => 'MessageController@get'));
 });
 
-Route::GET('comment/delete/{id:int}', array('use' => 'CommentController@delete', 'before' => 'auth'));
+Route::GET('estate/{id:int}/message', array('use' => 'MessageController@getAdd'));
+Route::POST('estate/{id:int}/message', array('use' => 'MessageController@postAdd'));
+
+Route::GET('estate/favorites/{id:int}/add', array('use' => 'UserController@addToFavourites'));
+Route::GET('estate/favorites/{id:int}/remove', array('use' => 'UserController@removeFromFavourites'));

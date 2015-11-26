@@ -58,6 +58,10 @@ body {
     text-overflow: ellipsis;
 }
 
+.font-bold {
+    font-weight: bold;
+}
+
 footer {
     margin: 50px 0;
 }

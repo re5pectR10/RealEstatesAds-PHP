@@ -92,7 +92,7 @@ use \FW\Session\Session;
                     <?= Form::label('Main Image', array('class' => 'control-label')) ?>
                     <?= Form::file(array('name' => 'main_image', 'class' => 'btn btn-primary')) ?>
                     <?php if(isset($estate['main_image'])): ?>
-                        <img style="max-width: 150px;max-height: 100px" src="<?= Common::getBaseURL() . '/images/' . $estate['main_image'] ?>" alt="No Image">
+                        <img style="max-width: 150px;max-height: 100px" src="<?= Common::getBaseDir() . '/images/' . $estate['main_image'] ?>" alt="No Image">
                         <a class="btn bg-danger" href="<?= Common::getBaseURL() ?>/admin/image/delete/<?= $estate['main_image_id'] ?>">Delete</a>
                     <?php endif; ?>
                 </div>
@@ -112,7 +112,7 @@ use \FW\Session\Session;
             <?php if(isset($estate['images'])): ?>
                 <div class="media-bottom">
                     <?php foreach($estate['images'] as $image): ?>
-                        <img style="max-width: 150px;max-height: 100px" src="<?=  Common::getBaseURL() . '/images/' .  $image['image'] ?>" alt="No Image">
+                        <img style="max-width: 150px;max-height: 100px" src="<?=  Common::getBaseDir() . '/images/' .  $image['image'] ?>" alt="No Image">
                         <a class="btn bg-danger" href="<?= Common::getBaseURL() ?>/admin/image/delete/<?= $image['id'] ?>">Delete</a>
                     <?php endforeach; ?>
                 </div>

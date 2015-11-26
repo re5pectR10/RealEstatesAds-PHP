@@ -38,7 +38,7 @@ class CityController {
             Redirect::back();
         }
 
-        Session::setMessage('done');
+        Session::setMessage('The city is deleted');
         Redirect::to('');
     }
 
@@ -71,7 +71,7 @@ class CityController {
             Redirect::back();
         }
 
-        Session::setMessage('done');
+        Session::setMessage('The city is added');
         Redirect::to('');
     }
 
@@ -103,7 +103,7 @@ class CityController {
 
         $this->city->edit($id, $name);
 
-        Session::setMessage('done');
+        Session::setMessage('The city is edited');
         Redirect::to('');
     }
 } 

@@ -12,9 +12,9 @@ use Models\UserModel;
 class UserController{
 
     /**
-     * @var \Models\Product
+     * @var \Models\Estate
      */
-    private $product;
+    private $estate;
     /**
      * @var \Models\User
      */
@@ -105,6 +105,26 @@ class UserController{
             Redirect::back();
         }
 
+        Session::setMessage('The profile is edited');
+        Redirect::to('');
+    }
+
+    public function addToFavourites($id) {
+
+        if($this->estate->estateExist($id) !== 1) {
+            Session::setError('The estate id is invalid');
+            Redirect::back();
+        }
+
+        if(Auth::isAuth()) {
+            $this->user->addEstateToFavourites(Auth::getUserId(), $id);
+        } else {
+            $favourites = Session::get('favourites') ? Session::get('favourites') : array();
+            $favourites[] = $id;
+            Session::set('favourites', $favourites);
+        }
+
+        Session::setMessage('Added to favourites');
         Redirect::to('');
     }
 } 

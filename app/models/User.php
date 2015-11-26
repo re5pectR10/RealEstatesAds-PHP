@@ -62,4 +62,16 @@ class User extends Model {
         $this->db->execute(array($userId));
         return $this->db->getAffectedRows();
     }
+
+    public function addEstateToFavourites($userId, $estateId) {
+        $this->db->prepare('insert into favorites(user_id,estate_id) values(?,?)');
+        $this->db->execute(array($userId, $estateId));
+        return $this->db->getAffectedRows();
+    }
+
+    public function getFavourites($id) {
+        $this->db->prepare('select estate_id from favorites where user_id=?');
+        $this->db->execute(array($id));
+        return $this->db->fetchAllAssoc();
+    }
 }

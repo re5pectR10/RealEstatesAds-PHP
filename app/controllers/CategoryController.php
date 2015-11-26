@@ -39,7 +39,7 @@ class CategoryController {
             Redirect::back();
         }
 
-        Session::setMessage('done');
+        Session::setMessage('The category is deleted');
         Redirect::to('');
     }
 
@@ -72,7 +72,7 @@ class CategoryController {
             Redirect::back();
         }
 
-        Session::setMessage('done');
+        Session::setMessage('The category is added');
         Redirect::to('');
     }
 
@@ -104,7 +104,7 @@ class CategoryController {
 
         $this->category->edit($id, $name);
 
-        Session::setMessage('done');
+        Session::setMessage('The category is edited');
         Redirect::to('');
     }
 } 

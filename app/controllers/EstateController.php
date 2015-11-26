@@ -32,6 +32,10 @@ class EstateController {
      * @var \Models\Image
      */
     private $image;
+    /**
+     * @var \Models\User
+     */
+    private $user;
 
     public function __construct() {
         $this->fileDit = Common::getPublicFilesDir() . 'images/';
@@ -84,6 +88,10 @@ class EstateController {
                 $searchCriteria->has_image,
                 $orderCriteria
             );
+
+            for($i = 0; $i < count($result['estates']); $i++) {
+                $result['estates'][$i]['name'] = isset($result['estates'][$i]['name']) ? $result['estates'][$i]['name'] : 'No_image_available.jpg';
+            }
         }
 
         $result['ad_type'] = array(
@@ -119,6 +127,14 @@ class EstateController {
             )
         );
 
+        if(Auth::isAuth()) {
+            $result['userFavourite'] = call_user_func_array('array_merge', array_values($this->user->getFavourites(Auth::getUserId())));
+        } else {
+            $result['userFavourite'] = Session::get('favourites');
+        }
+
+        $result['userFavourite'] = is_array($result['userFavourite']) ? $result['userFavourite'] : array();
+
         View::make('index', $result);
         if (Auth::isAuth()) {
             View::appendTemplateToLayout('topBar', 'top_bar.user');
@@ -134,6 +150,7 @@ class EstateController {
     public function details($id) {
         $result['estate'] = $this->estate->getEstate($id);
         $result['estate']['images'] = $this->image->getImagesByEstate($id);
+        $result['estate']['main_image'] = isset($result['estate']['main_image']) ? $result['estate']['main_image'] : 'No_image_available.jpg';
 
         View::make('estate.details', $result);
         if (Auth::isAuth()) {
@@ -330,20 +347,17 @@ class EstateController {
             }
         }
 
-        if ($this->estate->edit($id, $estate->location,
-                $estate->price,
-                $estate->area,
-                $estate->floor,
-                $estate->is_furnished,
-                $estate->description,
-                $estate->phone,
-                $estate->category_id,
-                $estate->city_id,
-                $estate->ad_type,
-                $imageId) !== 1) {
-            Session::setError('something went wrong');
-            Redirect::back();
-        }
+        $this->estate->edit($id, $estate->location,
+            $estate->price,
+            $estate->area,
+            $estate->floor,
+            $estate->is_furnished,
+            $estate->description,
+            $estate->phone,
+            $estate->category_id,
+            $estate->city_id,
+            $estate->ad_type,
+            $imageId);
 
         foreach($estate->images as $image) {
             $imageId = $this->saveFile($image);

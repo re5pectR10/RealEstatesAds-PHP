@@ -28,6 +28,9 @@ use \FW\Security\Auth;
             <li>
                 <a href="<?= Common::getBaseURL() ?>/admin/users">Users</a>
             </li>
+            <li>
+                <a href="<?= Common::getBaseURL() ?>/admin/messages">Messages</a>
+            </li>
         <?php endif ?>
     </ul>
 </div>
