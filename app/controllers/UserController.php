@@ -85,6 +85,7 @@ class UserController{
         $result['isEditor'] = Auth::isUserInRole(array('editor', 'admin'));
         $result['isAdmin'] = Auth::isUserInRole(array('admin'));
         $result['user'] = $this->user->getUser(Auth::getUserId());
+
         View::make('user.profile', $result);
         View::appendTemplateToLayout('topBar', 'top_bar/user');
         View::appendTemplateToLayout('header', 'includes/header')
@@ -125,6 +126,48 @@ class UserController{
         }
 
         Session::setMessage('Added to favourites');
-        Redirect::to('');
+        Redirect::back();
+    }
+
+    public function removeFromFavourites($id) {
+
+        if(Auth::isAuth()) {
+            $this->user->delteEstateFromFavourites(Auth::getUserId(), $id);
+        } else {
+            $favourites = Session::get('favourites') ? Session::get('favourites') : array();
+            if(($key = array_search($id, $favourites)) !== false) {
+                unset($favourites[$key]);
+            }
+            Session::set('favourites', $favourites);
+        }
+
+        Session::setMessage('Deleted successfully');
+        Redirect::back();
+    }
+
+    public function getFavourites() {
+
+        $userFavourite = array();
+        if(Auth::isAuth()) {
+            $favorites = ($this->user->getFavourites(Auth::getUserId()));
+            foreach($favorites as $f) {
+                $userFavourite[] = $f['estate_id'];
+            }
+        } else {
+            $userFavourite = Session::get('favourites');
+        }
+
+        if(!empty($userFavourite)) {
+            $result['estates'] = $this->estate->getFavoritesEstates($userFavourite);
+        } else {
+            $result['estates'] = array();
+        }
+
+
+        View::make('user.favorites', $result);
+        View::appendTemplateToLayout('topBar', 'top_bar/user');
+        View::appendTemplateToLayout('header', 'includes/header')
+            ->appendTemplateToLayout('footer', 'includes/footer')
+            ->render();
     }
 } 

@@ -61,5 +61,6 @@ Route::Group('admin', array('roles' => 'admin', 'before' => 'auth'), function() 
 Route::GET('estate/{id:int}/message', array('use' => 'MessageController@getAdd'));
 Route::POST('estate/{id:int}/message', array('use' => 'MessageController@postAdd'));
 
+Route::GET('favorites', array('use' => 'UserController@getFavourites'));
 Route::GET('estate/favorites/{id:int}/add', array('use' => 'UserController@addToFavourites'));
 Route::GET('estate/favorites/{id:int}/remove', array('use' => 'UserController@removeFromFavourites'));

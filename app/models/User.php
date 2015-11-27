@@ -69,6 +69,12 @@ class User extends Model {
         return $this->db->getAffectedRows();
     }
 
+    public function delteEstateFromFavourites($userId, $estateId) {
+        $this->db->prepare('delete from favorites where user_id=? and estate_id=?');
+        $this->db->execute(array($userId, $estateId));
+        return $this->db->getAffectedRows();
+    }
+
     public function getFavourites($id) {
         $this->db->prepare('select estate_id from favorites where user_id=?');
         $this->db->execute(array($id));

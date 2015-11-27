@@ -128,7 +128,10 @@ class EstateController {
         );
 
         if(Auth::isAuth()) {
-            $result['userFavourite'] = call_user_func_array('array_merge', array_values($this->user->getFavourites(Auth::getUserId())));
+            $favorites = ($this->user->getFavourites(Auth::getUserId()));
+            foreach($favorites as $f) {
+                $result['userFavourite'][] = $f['estate_id'];
+            }
         } else {
             $result['userFavourite'] = Session::get('favourites');
         }

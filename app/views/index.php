@@ -229,9 +229,6 @@ use \FW\Security\Auth;
                             <h5>ID: <?= $e['id'] ?></h5>
                             <address><?= $e['city'] ?>: <?= $e['location'] ?></address>
                             <p>Category: <?= $e['category'] ?></p>
-
-    <?php var_dump($userFavourite); ?>
-
                             <a class="btn bg-success pull-right" href="<?= Common::getBaseURL() ?>/estate/<?= $e['id'] ?>">Details</a>
                             <?php if(in_array($e['id'], $userFavourite)): ?>
                                 <a class="btn bg-primary pull-right" href="<?= Common::getBaseURL() ?>/estate/favorites/<?= $e['id'] ?>/remove">Remove From Favourites</a>

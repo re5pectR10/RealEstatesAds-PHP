@@ -12,7 +12,7 @@ use \FW\Security\Auth;
         </li>
         <?php if(Auth::isAuth()): ?>
         <li>
-            <a href="<?= Common::getBaseURL() ?>/user/<?= Auth::getUserId() ?>/favourites">Your Favourites</a>
+            <a href="<?= Common::getBaseURL() ?>/favorites">Your Favourites</a>
         </li>
         <?php endif ?>
         <?php if(Auth::isUserInRole(array('admin'))): ?>

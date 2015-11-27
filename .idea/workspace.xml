@@ -23,46 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EstateController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/EstateController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="135" selection-start="3807" selection-end="3807" vertical-scroll-proportion="-15.461538" vertical-offset="1655" max-vertical-offset="7123">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="38" selection-start="3160" selection-end="3160" vertical-scroll-proportion="0.31451613" vertical-offset="1308" max-vertical-offset="2193">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="232" column="35" selection-start="10007" selection-end="10007" vertical-scroll-proportion="-18.192308" vertical-offset="3420" max-vertical-offset="4352">
+            <state line="22" column="92" selection-start="677" selection-end="677" vertical-scroll-proportion="0.35438597" vertical-offset="20" max-vertical-offset="4301">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Estate.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/Estate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="43" selection-start="6567" selection-end="6567" vertical-scroll-proportion="-28.961538" vertical-offset="1185" max-vertical-offset="2074">
-              <folding>
-                <marker date="1448574468081" expanded="true" signature="121:511" placeholder="select e.id,..estates..." />
-                <marker date="1448574468081" expanded="true" signature="4738:4764" placeholder="select id,na..cities..." />
-                <marker date="1448574468081" expanded="true" signature="4910:4939" placeholder="delete from ..." />
-                <marker date="1448574468081" expanded="true" signature="5216:5389" placeholder="insert into ..." />
-                <marker date="1448574468081" expanded="true" signature="5782:5932" placeholder="update estat..." />
-                <marker date="1448574468081" expanded="true" signature="6212:6286" placeholder="select main_..estates..." />
-                <marker date="1448574468081" expanded="true" signature="6447:6480" placeholder="select id fr..estates..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -113,19 +78,20 @@
         <option value="$PROJECT_DIR$/app/views/estate/details.php" />
         <option value="$PROJECT_DIR$/app/views/message/add.php" />
         <option value="$PROJECT_DIR$/app/models/MessageBindingModel.php" />
-        <option value="$PROJECT_DIR$/app/views/top_bar/user.php" />
         <option value="$PROJECT_DIR$/app/public/css/shop-homepage.css" />
         <option value="$PROJECT_DIR$/app/views/message/index.php" />
         <option value="$PROJECT_DIR$/app/views/message/details.php" />
         <option value="$PROJECT_DIR$/app/models/Message.php" />
         <option value="$PROJECT_DIR$/app/controllers/MessageController.php" />
-        <option value="$PROJECT_DIR$/app/models/User.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/dependencies.php" />
-        <option value="$PROJECT_DIR$/app/models/Estate.php" />
-        <option value="$PROJECT_DIR$/app/controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/app/views/index.php" />
+        <option value="$PROJECT_DIR$/app/models/User.php" />
         <option value="$PROJECT_DIR$/app/controllers/EstateController.php" />
+        <option value="$PROJECT_DIR$/app/views/index.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$PROJECT_DIR$/app/views/top_bar/user.php" />
+        <option value="$PROJECT_DIR$/app/controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/app/models/Estate.php" />
+        <option value="$PROJECT_DIR$/app/views/user/favorites.php" />
       </list>
     </option>
   </component>
@@ -191,74 +157,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="FW" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FW" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Security" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FW" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HTML" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FW" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Helpers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -278,6 +176,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -300,28 +220,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="top_bar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="message" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -380,24 +278,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -712,13 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/top_bar/user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="70" selection-start="1159" selection-end="1159" vertical-scroll-proportion="0.5875576" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/public/css/shop-homepage.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="22" selection-start="968" selection-end="968" vertical-scroll-proportion="0.0" vertical-offset="262" max-vertical-offset="1224">
@@ -772,32 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="59" selection-start="2812" selection-end="2812" vertical-scroll-proportion="0.84792626" vertical-offset="488" max-vertical-offset="1394">
-          <folding>
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="select id fr..users..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="select usern..users..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="update users..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="update users..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="select u.id,..users..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="select id fr..roles..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="delete from ..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1448574166297" expanded="true" signature="-1:-1" placeholder="select estat..favorites..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="88" selection-start="3635" selection-end="3635" vertical-scroll-proportion="0.8824885" vertical-offset="322" max-vertical-offset="1190">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/dependencies.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="64" selection-start="1121" selection-end="1121" vertical-scroll-proportion="0.3721198" vertical-offset="0" max-vertical-offset="868">
@@ -805,38 +652,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Estate.php">
+    <entry file="file://$PROJECT_DIR$/app/models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="43" selection-start="6567" selection-end="6567" vertical-scroll-proportion="-28.961538" vertical-offset="1185" max-vertical-offset="2074">
+        <state line="74" column="44" selection-start="2968" selection-end="2968" vertical-scroll-proportion="0.7949309" vertical-offset="568" max-vertical-offset="1496">
           <folding>
-            <marker date="1448574468081" expanded="true" signature="121:511" placeholder="select e.id,..estates..." />
-            <marker date="1448574468081" expanded="true" signature="4738:4764" placeholder="select id,na..cities..." />
-            <marker date="1448574468081" expanded="true" signature="4910:4939" placeholder="delete from ..." />
-            <marker date="1448574468081" expanded="true" signature="5216:5389" placeholder="insert into ..." />
-            <marker date="1448574468081" expanded="true" signature="5782:5932" placeholder="update estat..." />
-            <marker date="1448574468081" expanded="true" signature="6212:6286" placeholder="select main_..estates..." />
-            <marker date="1448574468081" expanded="true" signature="6447:6480" placeholder="select id fr..estates..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="select id fr..users..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="select usern..users..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="update users..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="update users..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="select u.id,..users..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="select id fr..roles..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1448581417328" expanded="true" signature="-1:-1" placeholder="select estat..favorites..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/index.php">
+    <entry file="file://$PROJECT_DIR$/app/views/top_bar/user.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="232" column="35" selection-start="10007" selection-end="10007" vertical-scroll-proportion="-18.192308" vertical-offset="3420" max-vertical-offset="4352">
+        <state line="14" column="53" selection-start="458" selection-end="458" vertical-scroll-proportion="0.2546083" vertical-offset="0" max-vertical-offset="868">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="68" selection-start="3507" selection-end="3520" vertical-scroll-proportion="0.89285713" vertical-offset="296" max-vertical-offset="1207">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Estate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="273" selection-start="5003" selection-end="5003" vertical-scroll-proportion="0.39766082" vertical-offset="1054" max-vertical-offset="2176">
+          <folding>
+            <marker date="1448583293543" expanded="true" signature="-1:-1" placeholder="select e.id,..estates..." />
+            <marker date="1448583293543" expanded="true" signature="-1:-1" placeholder="select id,lo..estates..." />
+            <marker date="1448583293543" expanded="true" signature="-1:-1" placeholder="select id,lo..estates..." />
+            <marker date="1448583293543" expanded="true" signature="-1:-1" placeholder="select id,na..cities..." />
+            <marker date="1448583293543" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1448583293543" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1448583293543" expanded="true" signature="-1:-1" placeholder="update estat..." />
+            <marker date="1448583293543" expanded="true" signature="-1:-1" placeholder="select main_..estates..." />
+            <marker date="1448583293543" expanded="true" signature="-1:-1" placeholder="select id fr..estates..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/EstateController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="135" selection-start="3807" selection-end="3807" vertical-scroll-proportion="-15.461538" vertical-offset="1655" max-vertical-offset="7123">
+        <state line="92" column="146" selection-start="2788" selection-end="2812" vertical-scroll-proportion="-23.846153" vertical-offset="791" max-vertical-offset="7174">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user/favorites.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="88" selection-start="668" selection-end="668" vertical-scroll-proportion="0.3721198" vertical-offset="0" max-vertical-offset="868">
+          <folding>
+            <element signature="e#6#24#0" expanded="true" />
+            <element signature="e#465#507#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="38" selection-start="3160" selection-end="3160" vertical-scroll-proportion="0.31451613" vertical-offset="1308" max-vertical-offset="2193">
+        <state line="162" column="41" selection-start="5113" selection-end="5113" vertical-scroll-proportion="0.7258065" vertical-offset="2022" max-vertical-offset="2924">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="92" selection-start="677" selection-end="677" vertical-scroll-proportion="0.35438597" vertical-offset="20" max-vertical-offset="4301">
           <folding />
         </state>
       </provider>

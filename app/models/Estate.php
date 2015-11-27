@@ -79,6 +79,12 @@ class Estate extends Model{
         return $query;
     }
 
+    public function getFavoritesEstates(array $ids) {
+        $this->db->prepare('select e.id,e.price,e.location,e.area,e.ad_type,i.name,c.name as city,cat.name as category from estates as e join cities as c on c.id=e.city_id join categories as cat on cat.id=e.category_id left join images as i on i.id=e.main_image_id where e.id in ('. join(',', array_fill(0, count($ids), '?')) . ')');
+        $this->db->execute($ids);
+        return $this->db->fetchAllAssoc();
+    }
+
     public function getCities() {
         $this->db->prepare('select id,name from cities');
         $this->db->execute();
