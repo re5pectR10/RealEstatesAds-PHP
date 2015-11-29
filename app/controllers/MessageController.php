@@ -8,7 +8,7 @@ use \FW\Session\Session;
 use \FW\Helpers\Redirect;
 use \FW\Security\Validation;
 use \FW\Security\IValidator;
-use Models\MessageBindingModel;
+use Models\BindingModels\MessageBindingModel;
 
 class MessageController {
 
@@ -21,8 +21,11 @@ class MessageController {
      */
     private $message;
 
-    public function index() {
-        $result['messages'] = $this->message->getAll();
+    public function index($orderBy = 'created', $type = 'asc') {
+        $result['title'] = 'Messages';
+        $result['messages'] = $this->message->getAll($orderBy, $type);
+        $result['currentOrder'] = $orderBy == 'name' ? $orderBy : 'created';
+        $result['currentSort'] = $type == 'desc' ? $type : 'asc';
 
         View::make('message.index', $result);
         if (Auth::isAuth()) {
@@ -37,8 +40,15 @@ class MessageController {
     }
 
     public function get($id) {
-        $result['message'] = $this->message->getById($id);
-        $this->message->markAsRead($id);
+        $result['title'] = 'Message';
+        /* @var $message \Models\ViewModels\MessageViewModel */
+        $message = $this->message->getById($id);
+
+        if(!$message->is_read) {
+            $this->message->markAsRead($id);
+        }
+
+        $result['message'] = $message;
 
         View::make('message.details', $result);
         if (Auth::isAuth()) {
@@ -53,9 +63,11 @@ class MessageController {
     }
 
     public function getAdd($id) {
+        $result['title'] = 'Send Messages';
+        /* @var $estate \Models\ViewModels\EstateViewModel */
         $estate = $this->estate->getEstate($id);
-        $result['estateInfo'] = 'ID: ' . $estate['id'] . '; Category: ' . $estate['category'] . '; Type: ' . ($estate['ad_type'] == 1 ? 'For Sale' : 'For Rent')
-            . '; City: ' . $estate['city'] . '; Location: ' . $estate['location'] . '; Price: ' . $estate['price'] . ' EUR';
+        $result['estateInfo'] = 'ID: ' . $estate->id . '; Category: ' . $estate->category . '; Type: ' . ($estate->ad_type == 1 ? 'For Sale' : 'For Rent')
+            . '; City: ' . $estate->city . '; Location: ' . $estate->location . '; Price: ' . $estate->price . ' EUR';
 
         View::make('message.add', $result);
         if (Auth::isAuth()) {
@@ -69,7 +81,7 @@ class MessageController {
             ->render();
     }
 
-    public function postAdd($id, MessageBindingModel $message) {
+    public function postAdd(MessageBindingModel $message) {
         $validator = $this->validateMessage(new Validation(), $message);
 
         if (!$validator->validate()) {

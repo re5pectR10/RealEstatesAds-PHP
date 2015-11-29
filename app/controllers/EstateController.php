@@ -2,20 +2,28 @@
 
 namespace Controllers;
 
-use FW\Helpers\Common;
-use FW\Input\InputData;
 use FW\Security\IValidator;
 use FW\View\View;
 use FW\Security\Auth;
 use FW\Security\Validation;
 use FW\Session\Session;
 use FW\Helpers\Redirect;
-use Models\EstateAdBindingModel;
-use Models\SearchBindingModel;
+use Models\BindingModels\EstateAdBindingModel;
+use Models\SearchModel;
+use Models\ViewModels\CategoryViewModel;
+use Models\ViewModels\CityViewModel;
+use Models\ViewModels\EstateViewModel;
 
 class EstateController {
 
-    private $fileDit;
+    const IMAGE_THUMBNAIL_PREFIX = 'thumb';
+    const IMAGE_THUMBNAIL_WIDTH = 300;
+    const IMAGE_THUMBNAIL_HEIGHT = 200;
+    const IMAGE_MAX_WIDTH_WITHOUT_RESIZE = 400;
+    const IMAGE_MAX_HEIGHT_WITHOUT_RESIZE = 300;
+    const IMAGE_DIR = 'images/';
+    const DEFAULT_IMAGE_NAME = 'No_image_available.jpg';
+
     /**
      * @var \Models\Estate
      */
@@ -37,43 +45,20 @@ class EstateController {
      */
     private $user;
 
-    public function __construct() {
-        $this->fileDit = Common::getPublicFilesDir() . 'images/';
-    }
-
-    public function index(SearchBindingModel $searchCriteria){
-        $result['title']='Estates';
-        $result['isAdmin'] = Auth::isUserInRole(array('admin'));
-
+    public function index(SearchModel $searchCriteria){
+        $result['title'] = 'Estates';
         $result['estates'] = array();
         $result['categories'] = $this->category->getCategories();
         $result['cities'] = $this->city->getCities();
         $result['search'] = $searchCriteria;
 
         if($searchCriteria->sort_type !== null){
-            switch($searchCriteria->sort_type){
-                case 0:
-                    $orderCriteria = 'price';
-                    break;
-                case 1:
-                    $orderCriteria = 'area/price';
-                    break;
-                default:
-                    $orderCriteria = 'created_at';
-            }
+            $orderCriteria = $this->getOrderCriteria($searchCriteria);
 
-            switch($searchCriteria->furnished){
-                case 1:
-                    $is_furnished = array(0);
-                    break;
-                case 2:
-                    $is_furnished = array(1);
-                    break;
-                default:
-                    $is_furnished = array();
-            }
+            $is_furnished = $this->getIsFurnishedAsArray($searchCriteria);
 
-            $result['estates'] = $this->estate->getEstates(
+            /* @var $estates \Models\ViewModels\EstateBasicViewModel[] */
+            $estates = $this->estate->getEstates(
                 isset($searchCriteria->category_id) ? $searchCriteria->category_id : array(),
                 isset($searchCriteria->city_id) ? $searchCriteria->city_id : array(),
                 isset($searchCriteria->ad_type) ? $searchCriteria->ad_type : array(),
@@ -89,54 +74,24 @@ class EstateController {
                 $orderCriteria
             );
 
-            for($i = 0; $i < count($result['estates']); $i++) {
-                $result['estates'][$i]['name'] = isset($result['estates'][$i]['name']) ? $result['estates'][$i]['name'] : 'No_image_available.jpg';
+            foreach($estates as $estate) {
+                $estate->image = $this->setEstateMainImage($estate);
+                $estate->thumbnailName = $this->setImageThumb($estate->image);
             }
+
+            $result['estates'] = $estates;
         }
 
-        $result['ad_type'] = array(
-            array(
-                'id' => 0,
-                'name' => 'For Rent'
-            ),
-            array(
-                'id' => 1,
-                'name' => 'For Sale'
-            )
-        );
+        $result['ad_type'] = $this->setAdTypes();
 
-        $result['sort_type'] = array(
-            array(
-                'text' => 'Price',
-                'options' => array(
-                    'value' => 0
-                )
-            ),
-            array(
-                'text' => 'm2 / Price',
-                'options' => array(
-                    'value' => 1
-                )
-            ),
-            array(
-                'text' => 'Date',
-                'options' => array(
-                    'value' => 2,
-                    'selected' => true
-                )
-            )
-        );
+        $result['sort_type'] = $this->setSortType();
 
-        if(Auth::isAuth()) {
-            $favorites = ($this->user->getFavourites(Auth::getUserId()));
-            foreach($favorites as $f) {
-                $result['userFavourite'][] = $f['estate_id'];
-            }
-        } else {
-            $result['userFavourite'] = Session::get('favourites');
+        if($searchCriteria->sort_type!=null){
+            $result['sort_type'][$searchCriteria->sort_type]['options']['selected'] = true;
+        }else {
+            $result['sort_type'][2]['options']['selected'] = true;
         }
-
-        $result['userFavourite'] = is_array($result['userFavourite']) ? $result['userFavourite'] : array();
+        $result['userFavourite'] = $this->setUserFavorites();
 
         View::make('index', $result);
         if (Auth::isAuth()) {
@@ -151,9 +106,16 @@ class EstateController {
     }
 
     public function details($id) {
-        $result['estate'] = $this->estate->getEstate($id);
-        $result['estate']['images'] = $this->image->getImagesByEstate($id);
-        $result['estate']['main_image'] = isset($result['estate']['main_image']) ? $result['estate']['main_image'] : 'No_image_available.jpg';
+        $result['title'] = 'Details';
+        /* @var $estate \Models\ViewModels\EstateViewModel */
+        $estate = $this->estate->getEstate($id);
+        $estate->images = $this->image->getImagesByEstate($id);
+        foreach($estate->images as $i) {
+            $i->thumbnailName = $this->setImageThumb($i->name);
+        }
+        $estate->image = $this->setEstateMainImage($estate);
+        $estate->thumbnailName = $this->setImageThumb($estate->image);
+        $result['estate'] = $estate;
 
         View::make('estate.details', $result);
         if (Auth::isAuth()) {
@@ -168,35 +130,13 @@ class EstateController {
     }
 
     public function getAdd() {
-        $result['title']='Add';
+        $result['title'] = 'Add';
         $result['action'] = '/admin/estate/add';
-        $result['submit'] = 'add';
-        $categories = $this->category->getCategories();
-        foreach($categories as $c) {
-            $currentCategory = array();
-            $currentCategory['text'] = $c['name'];
-            $currentCategory['options'] = array('value' => $c['id']);
-            if(isset(Session::oldInput()['category_id']) && Session::oldInput()['category_id'] == $c['id']){
-                $currentCategory['options']['selected'] = 'true';
-            }
+        $result['submit'] = 'Add';
 
-            $result['categories'][] = $currentCategory;
-        }
+        $result['categories'] = $this->setCategoryFormOptions($this->category->getCategories());
+        $result['cities'] = $this->setCityFormOptions($this->city->getCities());
 
-        $result['categories'] = isset($result['categories']) ? $result['categories'] : array();
-        $cities = $this->city->getCities();
-        foreach($cities as $c) {
-            $currentCity = array();
-            $currentCity['text'] = $c['name'];
-            $currentCity['options'] = array('value' => $c['id']);
-            if(isset(Session::oldInput()['city_id']) && Session::oldInput()['city_id'] == $c['id']){
-                $currentCity['options']['selected'] = 'true';
-            }
-
-            $result['cities'][] = $currentCity;
-        }
-
-        $result['cities'] = isset($result['cities']) ? $result['cities'] : array();
         View::make('estate.add', $result);
         if (Auth::isAuth()) {
             View::appendTemplateToLayout('topBar', 'top_bar/user');
@@ -220,7 +160,7 @@ class EstateController {
 
         $imageId = null;
         if(isset($estate->main_image) && !empty($estate->main_image['name'])) {
-            $imageId = $this->saveFile($estate->main_image);
+            $imageId = $this->addEstateMainImage($estate);
         }
 
         $estateId =$this->estate->add($estate->location,
@@ -241,84 +181,33 @@ class EstateController {
             Redirect::back();
         }
 
-        foreach($estate->images as $image) {
-            $imageId = $this->saveFile($image);
-            if(!empty($imageId)) {
-                $this->image->addImageToEstate($estateId, $imageId);
-            }
-        }
+        $this->addEstateAdditionalImages($estateId, $estate);
 
         Session::setMessage('Estate Ad is added successfully');
         Redirect::to('');
     }
 
-    function reArrayFiles(&$file_post) {
-
-        $file_ary = array();
-        $file_count = count($file_post['name']);
-        $file_keys = array_keys($file_post);
-
-        for ($i=0; $i<$file_count; $i++) {
-            foreach ($file_keys as $key) {
-                $file_ary[$i][$key] = $file_post[$key][$i];
-            }
-        }
-
-        return $file_ary;
-    }
-
-    private function saveFile($file){
-        $fileName = trim(com_create_guid(), '{}');
-        $filePath = $this->fileDit . $fileName;
-        if(move_uploaded_file($file['tmp_name'], $filePath . '.' . pathinfo($file['name'], PATHINFO_EXTENSION))) {
-            return $this->image->add($fileName . '.' . pathinfo($file['name'], PATHINFO_EXTENSION));
-        }
-
-        return false;
-    }
-
     public function getEdit($id){
+        $result['title'] = 'Edit';
+
+        /* @var $estate \Models\ViewModels\EstateViewModel */
         $estate = $this->estate->getEstate($id);
         if($estate==null){
             Session::setError('The estate id is incorrect');
             Redirect::to('');
         }
 
+        $estate->images = $this->image->getImagesByEstate($id);
+        foreach($estate->images as $i) {
+            $i->thumbnailName = $this->setImageThumb($i->name);
+        }
         $result['estate'] = $estate;
-        $result['estate']['images'] = $this->image->getImagesByEstate($id);
-        $result['title']='Edit';
-        $result['action'] = '/admin/estate/' . $estate['id'] . '/edit';
-        $result['submit'] = 'edit';
-        $categories = $this->category->getCategories();
-        foreach($categories as $c) {
-            $currentCategory = array();
-            $currentCategory['text'] = $c['name'];
-            $currentCategory['options'] = array('value' => $c['id']);
-            if(isset($result['estate']) && $result['estate']['category_id'] == $c['id']){
-                $currentCategory['options']['selected'] = 'true';
-            } else if(isset(Session::oldInput()['category_id']) && Session::oldInput()['category_id'] == $c['id']){
-                $currentCategory['options']['selected'] = 'true';
-            }
+        $result['action'] = '/admin/estate/' . $estate->id . '/edit';
+        $result['submit'] = 'Edit';
 
-            $result['categories'][] = $currentCategory;
-        }
+        $result['categories'] = $this->setCategoryFormOptions($this->category->getCategories(), $estate);
+        $result['cities'] = $this->setCityFormOptions($this->city->getCities(), $estate);
 
-        $result['categories'] = isset($result['categories']) ? $result['categories'] : array();
-        $cities = $this->city->getCities();
-        foreach($cities as $c) {
-            $currentCity = array();
-            $currentCity['text'] = $c['name'];
-            $currentCity['options'] = array('value' => $c['id']);
-            if(isset($result['estate']) && $result['estate']['city_id'] == $c['id']){
-                $currentCity['options']['selected'] = 'true';
-            } else if(isset(Session::oldInput()['city_id']) && Session::oldInput()['city_id'] == $c['id']){
-                $currentCity['options']['selected'] = 'true';
-            }
-
-            $result['cities'][] = $currentCity;
-        }
-
-        $result['cities'] = isset($result['cities']) ? $result['cities'] : array();
         View::make('estate.add', $result);
         if (Auth::isAuth()) {
             View::appendTemplateToLayout('topBar', 'top_bar/user');
@@ -332,6 +221,11 @@ class EstateController {
     }
 
     public function postEdit($id, EstateAdBindingModel $estate) {
+        if($this->estate->estateExist($id) !== 1) {
+            Session::setError('The estate id is invalid');
+            Redirect::back();
+        }
+
         $estate->images = $this->reArrayFiles($estate->images);
         $validator = $this->validateEstateAd(new Validation(), $estate);
 
@@ -343,7 +237,7 @@ class EstateController {
         $imageId = $this->estate->getMainImageId($id)['main_image_id'];
         if(isset($estate->main_image) && !empty($estate->main_image['name'])) {
             if(empty($imageId)) {
-                $imageId = $this->saveFile($estate->main_image);
+                $imageId = $this->addEstateMainImage($estate);
             } else {
                 Session::setError('You have to delete the existed main image');
                 Redirect::back();
@@ -362,15 +256,256 @@ class EstateController {
             $estate->ad_type,
             $imageId);
 
-        foreach($estate->images as $image) {
-            $imageId = $this->saveFile($image);
-            if(!empty($imageId)) {
-                $this->image->addImageToEstate($id, $imageId);
-            }
-        }
+        $this->addEstateAdditionalImages($id, $estate);
 
         Session::setMessage('Estate Ad is edited successfully');
         Redirect::to('');
+    }
+
+    /**
+     * @param EstateAdBindingModel $estate
+     * @return null|string
+     */
+    public function addEstateMainImage(EstateAdBindingModel $estate) {
+        $imageId = null;
+        $imageName = $this->saveFile($estate->main_image, EstateController::IMAGE_DIR);
+        if (!empty($imageName)) {
+            $imageId = $this->image->add($imageName);
+            $this->createImageThumbnail($imageName,
+                EstateController::IMAGE_THUMBNAIL_WIDTH,
+                EstateController::IMAGE_THUMBNAIL_HEIGHT,
+                EstateController::IMAGE_THUMBNAIL_PREFIX,
+                EstateController::IMAGE_DIR
+            );
+        }
+
+        return $imageId;
+    }
+
+    /**
+     * @param $id
+     * @param EstateAdBindingModel $estate
+     */
+    public function addEstateAdditionalImages($id, EstateAdBindingModel $estate) {
+        foreach($estate->images as $image) {
+            $imageName = $this->saveFile($image, EstateController::IMAGE_DIR);
+            if(!empty($imageName)) {
+                $imageId = $this->image->add($imageName);
+                $this->image->addImageToEstate($id, $imageId);
+                if ($this->imageIsBiggerThan(EstateController::IMAGE_DIR .$imageName, EstateController::IMAGE_MAX_WIDTH_WITHOUT_RESIZE, EstateController::IMAGE_MAX_HEIGHT_WITHOUT_RESIZE)) {
+                    $this->createImageThumbnail($imageName,
+                        EstateController::IMAGE_THUMBNAIL_WIDTH,
+                        EstateController::IMAGE_THUMBNAIL_HEIGHT,
+                        EstateController::IMAGE_THUMBNAIL_PREFIX,
+                        EstateController::IMAGE_DIR
+                    );
+                }
+            }
+        }
+    }
+
+    public function imageIsBiggerThan($filename, $width, $height) {
+        $size = getimagesize($filename);
+        return $size[0] > $width || $size[1] > $height;
+    }
+
+    public function createImageThumbnail($imageName, $width, $height, $prefix, $imagesDir) {
+        list($width_orig, $height_orig) = getimagesize($imagesDir . $imageName);
+
+        $ratio_orig = $width_orig/$height_orig;
+
+        if ($width/$height > $ratio_orig) {
+            $width = $height*$ratio_orig;
+        } else {
+            $height = $width/$ratio_orig;
+        }
+        $image_p = imagecreatetruecolor($width, $height);
+        $image = imagecreatefromjpeg($imagesDir . $imageName);
+        imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
+        imagejpeg($image_p, $imagesDir . $prefix . $imageName, 100);
+    }
+
+    function reArrayFiles(&$file_post) {
+
+        $file_ary = array();
+        $file_count = count($file_post['name']);
+        $file_keys = array_keys($file_post);
+
+        for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_ary[$i][$key] = $file_post[$key][$i];
+            }
+        }
+
+        return $file_ary;
+    }
+
+    private function saveFile($file, $dir){
+        $fileName = trim(com_create_guid(), '{}');
+        $filePath = $dir . $fileName;
+        if(move_uploaded_file($file['tmp_name'], $filePath . '.' . pathinfo($file['name'], PATHINFO_EXTENSION))) {
+            return $fileName . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+        }
+
+        return false;
+    }
+
+    /**
+     * @param CategoryViewModel[] $categories
+     * @param EstateViewModel $estate
+     * @return array
+     */
+    public function setCategoryFormOptions(array $categories, EstateViewModel $estate = null) {
+        $options = array();
+        foreach($categories as $c) {
+            $currentCategory = array();
+            $currentCategory['text'] = $c->name;
+            $currentCategory['options'] = array('value' => $c->id);
+            if(isset($estate) && $estate->category == $c->id){
+                $currentCategory['options']['selected'] = 'true';
+            } else if(isset(Session::oldInput()['category_id']) && Session::oldInput()['category_id'] == $c->id){
+                $currentCategory['options']['selected'] = 'true';
+            }
+
+            $options[] = $currentCategory;
+        }
+
+        return $options;
+    }
+
+    /**
+     * @param CityViewModel[] $cities
+     * @param EstateViewModel $estate
+     * @return array
+     */
+    public function setCityFormOptions(array $cities, EstateViewModel $estate = null) {
+        $options = array();
+        foreach($cities as $c) {
+            $currentCity = array();
+            $currentCity['text'] = $c->name;
+            $currentCity['options'] = array('value' => $c->id);
+            if(isset($estate) && $estate->city == $c->id){
+                $currentCity['options']['selected'] = 'true';
+            } else if(isset(Session::oldInput()['city_id']) && Session::oldInput()['city_id'] == $c->id){
+                $currentCity['options']['selected'] = 'true';
+            }
+
+            $options[] = $currentCity;
+        }
+
+        return $options;
+    }
+
+    /**
+     * @param SearchModel $search
+     * @return string
+     */
+    public function getOrderCriteria(SearchModel $search) {
+        switch($search->sort_type){
+            case 0:
+                return 'price';
+                break;
+            case 1:
+                return 'area/price';
+                break;
+            default:
+                return 'created_at';
+        }
+    }
+
+    /**
+     * @param SearchModel $search
+     * @return array
+     */
+    public function getIsFurnishedAsArray(SearchModel $search) {
+        switch($search->furnished){
+            case 1:
+                return array(0);
+                break;
+            case 2:
+                return array(1);
+                break;
+            default:
+                return array();
+        }
+    }
+
+    /**
+     * @param $estate \Models\ViewModels\EstateBasicViewModel
+     * @return string
+     */
+    public static function setEstateMainImage($estate) {
+        if(isset($estate->image)) {
+            return $estate->image;
+        }
+
+        return EstateController::DEFAULT_IMAGE_NAME;
+    }
+
+    public static function setImageThumb($imageName) {
+        if(file_exists(EstateController::IMAGE_DIR . EstateController::IMAGE_THUMBNAIL_PREFIX . $imageName) && $imageName != EstateController::DEFAULT_IMAGE_NAME) {
+            return EstateController::IMAGE_THUMBNAIL_PREFIX . $imageName;
+        }
+
+        return null;
+    }
+    /**
+     * @return array
+     */
+    public function setUserFavorites() {
+        $userFavorites = array();
+        if(Auth::isAuth()) {
+            $favorites = ($this->user->getFavourites(Auth::getUserId()));
+            foreach($favorites as $f) {
+                $userFavorites[] = $f['estate_id'];
+            }
+        } else {
+            $userFavorites = Session::get('favourites');
+        }
+
+        return is_array($userFavorites) ? $userFavorites : array();
+    }
+
+    /**
+     * @return array
+     */
+    public function setAdTypes() {
+        return array(
+            array(
+                'id' => 0,
+                'name' => 'For Rent'
+            ),
+            array(
+                'id' => 1,
+                'name' => 'For Sale'
+            )
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function setSortType() {
+        return array(
+            array(
+                'text' => 'Price',
+                'options' => array(
+                    'value' => 0
+                )
+            ),
+            array(
+                'text' => 'm2 / Price',
+                'options' => array(
+                    'value' => 1
+                )
+            ),
+            array(
+                'text' => 'Date',
+                'options' => array(
+                    'value' => 2
+                )
+            )
+        );
     }
 
     /**

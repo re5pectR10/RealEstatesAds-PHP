@@ -6,7 +6,7 @@ namespace Models;
 class Estate extends Model{
 
     public function getEstate($id) {
-        $this->db->prepare('select e.id, e.location, e.price, e.area, e.floor, e.is_furnished, e.description, e.phone, c.name as category, s.name as city, e.ad_type, e.main_image_id, i.name as main_image
+        $this->db->prepare('select e.id, e.location, e.price, e.area, e.floor, e.is_furnished, e.description, e.phone, c.name as category, s.name as city, e.ad_type, i.name as image
             from estates as e
             join categories as c on c.id=e.category_id
             join cities as s on s.id=e.city_id
@@ -14,7 +14,7 @@ class Estate extends Model{
             where e.id=?');
 
         $this->db->execute(array($id));
-        return $this->db->fetchRowAssoc();
+        return $this->db->fetchRowClass('Models\ViewModels\EstateViewModel');
     }
 
     public function getEstates(array $categories, array $cities, array $ad_type, $start_price, $end_price, $start_area, $end_area, $start_floor, $end_floor, $location, array $furnished, $has_image,  $order_by){
@@ -27,11 +27,11 @@ class Estate extends Model{
         }
         $this->db->prepare($this->buildGetEstatesQuery($categories, $cities, $ad_type, $price, $area, $floor, $location, $furnished, $has_image, $order_by));
         $this->db->execute(array_merge($categories, $cities, $ad_type, array_values($price), array_values($area), array_values($floor), array_values($location), array_values($furnished)));
-        return $this->db->fetchAllAssoc();
+        return $this->db->fetchAllClass('Models\ViewModels\EstateBasicViewModel');
     }
 
     private function buildGetEstatesQuery(array $categories, array $cities, array $ad_type, array $price, array $area, array $floor, array $location, array $furnished, $has_image, $order_by){
-        $query = 'select e.id,e.price,e.location,e.area,e.ad_type,i.name,c.name as city,cat.name as category from estates as e join cities as c on c.id=e.city_id join categories as cat on cat.id=e.category_id left join images as i on i.id=e.main_image_id'
+        $query = 'select e.id,e.price,e.location,e.area,e.ad_type,i.name as image,c.name as city,cat.name as category from estates as e join cities as c on c.id=e.city_id join categories as cat on cat.id=e.category_id left join images as i on i.id=e.main_image_id'
             . (!(empty($categories) && empty($cities) && empty($ad_type) && empty($price) && empty($area) && empty($floor) && empty($location) && empty($furnished) && empty($has_image)) ? ' where ' : '')
             . (empty($categories) ? '' : 'category_id in (' . join(',', array_fill(0, count($categories), '?')) . ')')
             . (empty($categories) || empty($cities) ? '' : ' and ')
@@ -80,9 +80,9 @@ class Estate extends Model{
     }
 
     public function getFavoritesEstates(array $ids) {
-        $this->db->prepare('select e.id,e.price,e.location,e.area,e.ad_type,i.name,c.name as city,cat.name as category from estates as e join cities as c on c.id=e.city_id join categories as cat on cat.id=e.category_id left join images as i on i.id=e.main_image_id where e.id in ('. join(',', array_fill(0, count($ids), '?')) . ')');
+        $this->db->prepare('select e.id,e.price,e.location,e.area,e.ad_type,i.name as image,c.name as city,cat.name as category from estates as e join cities as c on c.id=e.city_id join categories as cat on cat.id=e.category_id left join images as i on i.id=e.main_image_id where e.id in ('. join(',', array_fill(0, count($ids), '?')) . ')');
         $this->db->execute($ids);
-        return $this->db->fetchAllAssoc();
+        return $this->db->fetchAllClass('Models\ViewModels\EstateBasicViewModel');
     }
 
     public function getCities() {

@@ -3,6 +3,7 @@ use \FW\View\View;
 use \FW\Helpers\Common;
 use \FW\HTML\Form;
 use \FW\Session\Session;
+/* @var $title string */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,12 +14,14 @@ use \FW\Session\Session;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?= $title ?></title>
+    <title><?= $title ?> - Estates Ads</title>
     <?= Form::script('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js') ?>
     <?= Form::script('js/bootstrap.min.js') ?>
     <?= Form::script('js/main.js') ?>
+
     <?= Form::style('css/bootstrap.min.css') ?>
     <?= Form::style('css/shop-homepage.css') ?>
+    <?= Form::style('css/ekko-lightbox.min.css') ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -3,6 +3,15 @@ use \FW\View\View;
 use \FW\Helpers\Common;
 use \FW\HTML\Form;
 use \FW\Security\Auth;
+/**
+ * @var $categories Models\ViewModels\CategoryViewModel[]
+ * @var $cities Models\ViewModels\CityViewModel[]
+ * @var $estates Models\ViewModels\EstateBasicViewModel[]
+ * @var $search Models\SearchModel
+ * @var $ad_type array
+ * @var $sort_type array
+ * @var $userFavourite array
+ */
 ?>
 <?= View::getLayoutData('header') ?>
 
@@ -21,8 +30,8 @@ use \FW\Security\Auth;
                         <?php foreach($categories as $cat): ?>
                             <div class="checkbox">
                                 <?= Form::label(Form::check(array('name' => 'category_id[]',
-                                        'value' => $cat['id'],
-                                        (is_array($search->category_id) && in_array($cat['id'], $search->category_id) ?'checked' :'')=>'')) . $cat['name'],
+                                        'value' => $cat->id,
+                                        (is_array($search->category_id) && in_array($cat->id, $search->category_id) ?'checked' :'')=>'')) . $cat->name,
                                     array('class' => 'control-label')) ?>
                             </div>
                         <?php endforeach; ?>
@@ -32,7 +41,10 @@ use \FW\Security\Auth;
                         <h3>Cities</h3>
                         <?php foreach($cities as $city): ?>
                             <div class="checkbox">
-                                <?= Form::label(Form::check(array('name' => 'city_id[]', 'value' => $city['id'])) . $city['name'], array('class' => 'control-label')) ?>
+                                <?= Form::label(Form::check(array('name' => 'city_id[]',
+                                        'value' => $city->id,
+                                        (is_array($search->city_id) && in_array($city->id, $search->city_id) ?'checked' :'')=>''
+                                        )) . $city->name, array('class' => 'control-label')) ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -41,7 +53,10 @@ use \FW\Security\Auth;
                         <h3>Type</h3>
                         <?php foreach($ad_type as $type): ?>
                             <div class="checkbox">
-                                <?= Form::label(Form::check(array('name' => 'ad_type[]', 'value' => $type['id'])) . $type['name'], array('class' => 'control-label')) ?>
+                                <?= Form::label(Form::check(array('name' => 'ad_type[]',
+                                        'value' => $type['id'],
+                                        (is_array($search->ad_type) && in_array($type['id'], $search->ad_type) ?'checked' :'')=>''
+                                        )) . $type['name'], array('class' => 'control-label')) ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -82,7 +97,7 @@ use \FW\Security\Auth;
                                 </div>
 
                                 <div class="col-md-8">
-                                    <?= Form::number(array('name' => 'start_price', 'id' => 'start_price', 'class' => 'form-control')) ?>
+                                    <?= Form::number(array('name' => 'start_price', 'value' => (isset($search) ? $search->start_price : ''), 'id' => 'start_price', 'class' => 'form-control')) ?>
                                 </div>
                             </div>
 
@@ -92,7 +107,7 @@ use \FW\Security\Auth;
                                 </div>
 
                                 <div class="col-md-8">
-                                    <?= Form::number(array('name' => 'end_price', 'id' => 'end_price', 'class' => 'form-control')) ?>
+                                    <?= Form::number(array('name' => 'end_price', 'value' => (isset($search) ? $search->end_price : ''), 'id' => 'end_price', 'class' => 'form-control')) ?>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +123,7 @@ use \FW\Security\Auth;
                                 </div>
 
                                 <div class="col-md-8">
-                                    <?= Form::number(array('name' => 'start_area', 'id' => 'start_area', 'class' => 'form-control')) ?>
+                                    <?= Form::number(array('name' => 'start_area', 'value' => (isset($search) ? $search->start_area : ''), 'id' => 'start_area', 'class' => 'form-control')) ?>
                                 </div>
                             </div>
 
@@ -118,7 +133,7 @@ use \FW\Security\Auth;
                                 </div>
 
                                 <div class="col-md-8">
-                                    <?= Form::number(array('name' => 'end_area', 'id' => 'end_area', 'class' => 'form-control')) ?>
+                                    <?= Form::number(array('name' => 'end_area', 'value' => (isset($search) ? $search->end_area : ''), 'id' => 'end_area', 'class' => 'form-control')) ?>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +151,7 @@ use \FW\Security\Auth;
                                 </div>
 
                                 <div class="col-md-8">
-                                    <?= Form::text(array('name' => 'location', 'id' => 'location', 'class' => 'form-control')) ?>
+                                    <?= Form::text(array('name' => 'location', 'value' => (isset($search) ? $search->location : ''), 'id' => 'location', 'class' => 'form-control')) ?>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +167,7 @@ use \FW\Security\Auth;
                                 </div>
 
                                 <div class="col-md-8">
-                                    <?= Form::number(array('name' => 'start_floor', 'id' => 'start_floor', 'class' => 'form-control')) ?>
+                                    <?= Form::number(array('name' => 'start_floor', 'value' => (isset($search) ? $search->start_floor : ''), 'id' => 'start_floor', 'class' => 'form-control')) ?>
                                 </div>
                             </div>
 
@@ -162,7 +177,7 @@ use \FW\Security\Auth;
                                 </div>
 
                                 <div class="col-md-8">
-                                    <?= Form::number(array('name' => 'end_floor', 'id' => 'end_floor', 'class' => 'form-control')) ?>
+                                    <?= Form::number(array('name' => 'end_floor', 'value' => (isset($search) ? $search->end_floor : ''), 'id' => 'end_floor', 'class' => 'form-control')) ?>
                                 </div>
                             </div>
                         </div>
@@ -177,20 +192,23 @@ use \FW\Security\Auth;
                         <div class="form-group">
                             <div class="radio">
                                 <?= Form::label(Form::radio(array(
-                                            'name' => 'furnished',
-                                            'value' => 1))
+                                        'name' => 'furnished',
+                                        'value' => 1,
+                                        ($search->furnished == 1 ? 'checked' : '') => ''))
                                     . 'Unfurnished', array('class' => 'control-label')) ?>
                             </div>
                             <div class="radio">
                                 <?= Form::label(Form::radio(array(
                                         'name' => 'furnished',
-                                        'value' => 2))
+                                        'value' => 2,
+                                        ($search->furnished == 2 ? 'checked' : '') => ''))
                                     . 'Furnished', array('class' => 'control-label')) ?>
                             </div>
                             <div class="radio">
                                 <?= Form::label(Form::radio(array(
                                         'name' => 'furnished',
-                                        'value' => 3))
+                                        'value' => 3,
+                                        ((!isset($search->furnished) || $search->furnished == 3) ? 'checked' : '') => ''))
                                     . 'Both', array('class' => 'control-label')) ?>
                             </div>
                         </div>
@@ -200,7 +218,10 @@ use \FW\Security\Auth;
 
                         <div class="form-group">
                                 <div class="checkbox">
-                                    <?= Form::label(Form::check(array('name' => 'has_image', 'value' => 1)) . 'Has Image ?', array('class' => 'control-label')) ?>
+                                    <?= Form::label(Form::check(array('name' => 'has_image',
+                                            'value' => 1,
+                                            (isset($search) && $search->has_image == 1 ? 'checked' : '') => ''))
+                                        . 'Has Image ?', array('class' => 'control-label')) ?>
                                 </div>
                         </div>
 
@@ -215,31 +236,17 @@ use \FW\Security\Auth;
         <?= Form::close() ?>
 
         <div class="list-group">
-            <?php /* @var $estates array */ ?>
             <?php foreach($estates as $e): ?>
                 <div class="list-group-item">
                     <div class="media">
 
-                        <div class="media-left col-lg-2">
-                            <img class="center-block" style="max-width: 150px;max-height: 100px" src="<?=  Common::getBaseDir() . '/images/' .  $e['name'] ?>" alt="No Image">
-                        </div>
+                        <?= View::includePartial('_EstateBasic', array('estate' => $e)); ?>
 
-                        <div class="media-body">
-                            <h3 class="pull-right"><?= $e['price'] ?> EUR</h3>
-                            <h5>ID: <?= $e['id'] ?></h5>
-                            <address><?= $e['city'] ?>: <?= $e['location'] ?></address>
-                            <p>Category: <?= $e['category'] ?></p>
-                            <a class="btn bg-success pull-right" href="<?= Common::getBaseURL() ?>/estate/<?= $e['id'] ?>">Details</a>
-                            <?php if(in_array($e['id'], $userFavourite)): ?>
-                                <a class="btn bg-primary pull-right" href="<?= Common::getBaseURL() ?>/estate/favorites/<?= $e['id'] ?>/remove">Remove From Favourites</a>
-                            <?php else: ?>
-                                <a class="btn bg-primary pull-right" href="<?= Common::getBaseURL() ?>/estate/favorites/<?= $e['id'] ?>/add">Add To Favourites</a>
-                            <?php endif; ?>
-                            <h4><?= $e['area'] ?> m2 (<?= $e['ad_type'] == 1 ? 'For Sale' : 'For Rent' ?>)</h4>
-                            <?php if(Auth::isUserInRole(array('admin'))): ?>
-                                <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/estate/<?= $e['id'] ?>/edit">Edit</a>
-                            <?php endif ?>
-                        </div>
+                        <?php if(in_array($e->id, $userFavourite)): ?>
+                            <a class="btn bg-primary pull-right" href="<?= Common::getBaseURL() ?>/estate/favorites/<?= $e->id ?>/remove">Remove From Favourites</a>
+                        <?php else: ?>
+                            <a class="btn bg-primary pull-right" href="<?= Common::getBaseURL() ?>/estate/favorites/<?= $e->id ?>/add">Add To Favourites</a>
+                        <?php endif; ?>
 
                     </div>
                 </div>

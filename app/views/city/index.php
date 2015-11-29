@@ -1,6 +1,7 @@
 <?php
 use \FW\View\View;
 use \FW\Helpers\Common;
+/* @var $cities \Models\ViewModels\CityViewModel[] */
 ?>
 <?= View::getLayoutData('header') ?>
 
@@ -23,10 +24,10 @@ use \FW\Helpers\Common;
                     foreach($cities as $c):
                         ?>
                         <tr>
-                            <td><?= $c['name'] ?></td>
+                            <td><?= $c->name ?></td>
                             <td>
-                                <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/city/<?= $c['id'] ?>/edit">Edit</a>
-                                <a onclick="return confirm('Are your sure?')" class="btn btn-danger" href="<?= Common::getBaseURL() ?>/admin/city/<?= $c['id'] ?>/delete">Delete</a>
+                                <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/city/<?= $c->id ?>/edit">Edit</a>
+                                <a onclick="return confirm('Are your sure?')" class="btn btn-danger" href="<?= Common::getBaseURL() ?>/admin/city/<?= $c->id ?>/delete">Delete</a>
                             </td>
                         </tr>
                     <?php

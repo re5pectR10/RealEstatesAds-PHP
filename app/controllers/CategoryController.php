@@ -17,9 +17,9 @@ class CategoryController {
     private $category;
 
     public function index() {
-        $result['title']='Categories';
+        $result['title'] = 'Categories';
 
-        $result['categories']=$this->category->getCategories();
+        $result['categories'] = $this->category->getCategories();
 
         View::make('category.index', $result);
         if (Auth::isAuth()) {
@@ -35,7 +35,7 @@ class CategoryController {
 
     public function deleteCategory($id) {
         if ($this->category->delete($id) !== 1) {
-            Session::setError('can not delete this category');
+            Session::setError('Something went wrong. Try again');
             Redirect::back();
         }
 
@@ -44,9 +44,10 @@ class CategoryController {
     }
 
     public function getAdd() {
-        $result['title']='Shop';
+        $result['title'] = 'Add Category';
         $result['action'] = '/admin/category/add';
-        $result['submit'] = 'add';
+        $result['submit'] = 'Add';
+
         View::make('category.add', $result);
         if (Auth::isAuth()) {
             View::appendTemplateToLayout('topBar', 'top_bar/user');
@@ -61,7 +62,7 @@ class CategoryController {
 
     public function postAdd($name) {
         $validator = new Validation();
-        $validator->setRule('required', $name, null, 'name');
+        $validator->setRule('required', $name, null, 'Name');
         if (!$validator->validate()) {
             Session::setError($validator->getErrors());
             Redirect::back();
@@ -78,9 +79,9 @@ class CategoryController {
 
     public function getEdit($id) {
         $result = array('category' => $this->category->getCategory($id));
-        $result['title']='Edit';
-        $result['action'] = '/admin/category/' . $result['category']['id'] . '/edit';
-        $result['submit'] = 'edit';
+        $result['title'] = 'Edit Category';
+        $result['action'] = '/admin/category/' . $result['category']->id . '/edit';
+        $result['submit'] = 'Edit';
 
         View::make('category.add', $result);
         if (Auth::isAuth()) {
@@ -96,7 +97,7 @@ class CategoryController {
 
     public function postEdit($id, $name) {
         $validator = new Validation();
-        $validator->setRule('required', $name, null, 'name');
+        $validator->setRule('required', $name, null, 'Name');
         if (!$validator->validate()) {
             Session::setError($validator->getErrors());
             Redirect::back();

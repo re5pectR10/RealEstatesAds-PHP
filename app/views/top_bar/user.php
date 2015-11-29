@@ -10,11 +10,9 @@ use \FW\Security\Auth;
         <li>
             <a href="<?= Common::getBaseURL() ?>/user/logout">Logout</a>
         </li>
-        <?php if(Auth::isAuth()): ?>
         <li>
             <a href="<?= Common::getBaseURL() ?>/favorites">Your Favourites</a>
         </li>
-        <?php endif ?>
         <?php if(Auth::isUserInRole(array('admin'))): ?>
             <li>
                 <a href="<?= Common::getBaseURL() ?>/admin/category">Categories</a>

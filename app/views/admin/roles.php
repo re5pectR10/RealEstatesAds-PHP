@@ -2,6 +2,7 @@
 use \FW\View\View;
 use \FW\Helpers\Common;
 use \FW\Session\Session;
+/* @var $users \Models\ViewModels\UserRoleViewModel[] */
 ?>
 <?= View::getLayoutData('header') ?>
 
@@ -27,23 +28,19 @@ use \FW\Session\Session;
                     </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    foreach($users as $u):
-                        ?>
+                    <?php foreach($users as $u): ?>
                         <tr>
-                            <td><?= $u['username'] ?></td>
-                            <td><?= $u['role'] ?></td>
+                            <td><?= $u->username ?></td>
+                            <td><?= $u->role ?></td>
                             <td>
-                            <?php if($u['role'] == 'admin'): ?>
-                                <a class="btn btn-warning" href="<?= Common::getBaseURL() ?>/admin/make/<?= $u['id'] ?>/user">Make User</a>
+                            <?php if($u->role == 'admin'): ?>
+                                <a class="btn btn-warning" href="<?= Common::getBaseURL() ?>/admin/make/<?= $u->id ?>/user">Make User</a>
                             <?php else: ?>
-                                <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/make/<?= $u['id'] ?>/admin">Make Admin</a>
+                                <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/make/<?= $u->id ?>/admin">Make Admin</a>
                             <?php endif; ?>
                             </td>
                         </tr>
-                    <?php
-                    endforeach;
-                    ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

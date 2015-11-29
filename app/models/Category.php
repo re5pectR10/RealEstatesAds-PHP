@@ -7,13 +7,13 @@ class Category extends Model {
     public function getCategory($id) {
         $this->db->prepare('select id,name from categories where id=?');
         $this->db->execute(array($id));
-        return $this->db->fetchRowAssoc();
+        return $this->db->fetchRowClass('Models\ViewModels\CategoryViewModel');
     }
 
     public function getCategories() {
         $this->db->prepare('select id,name from categories');
         $this->db->execute();
-        return $this->db->fetchAllAssoc();
+        return $this->db->fetchAllClass('Models\ViewModels\CategoryViewModel');
     }
 
     public function delete($id) {

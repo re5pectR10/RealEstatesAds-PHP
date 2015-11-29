@@ -18,9 +18,9 @@ class Image extends Model{
     }
 
     public function getImagesByEstate($estateId) {
-        $this->db->prepare('select id, name as image from images as i join estate_images as e on i.id=e.image_id where e.estate_id=?');
+        $this->db->prepare('select id, name from images as i join estate_images as e on i.id=e.image_id where e.estate_id=?');
         $this->db->execute(array($estateId));
-        return $this->db->fetchAllAssoc();
+        return $this->db->fetchAllClass('Models\ViewModels\ImageViewModel');
     }
 
     public function delete($id) {
@@ -32,6 +32,6 @@ class Image extends Model{
     public function getById($id) {
         $this->db->prepare('select name from images where id=?');
         $this->db->execute(array($id));
-        return $this->db->fetchRowAssoc();
+        return $this->db->fetchRowClass('Models\ViewModels\ImageViewModel');
     }
 } 

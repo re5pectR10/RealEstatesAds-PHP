@@ -2,7 +2,6 @@
 
 namespace Controllers;
 use FW\Security\Auth;
-use FW\Input\InputData;
 use FW\Helpers\Redirect;
 use FW\Session\Session;
 use FW\Security\Validation;
@@ -21,7 +20,7 @@ class UserController{
     private $user;
 
     public function getRegister() {
-        $result['title']='Shop';
+        $result['title'] = 'Sign In';
         View::make('user.register', $result);
         if (Auth::isAuth()) {
             View::appendTemplateToLayout('topBar', 'top_bar/user');
@@ -36,9 +35,9 @@ class UserController{
 
     public function postRegister(UserModel $user) {
         $validator = new Validation();
-        $validator->setRule('required', $user->username, null, 'username');
-        $validator->setRule('required', $user->password, null, 'password');
-        $validator->setRule('email', $user->email, null, 'email');
+        $validator->setRule('required', $user->username, null, 'Username');
+        $validator->setRule('required', $user->password, null, 'Password');
+        $validator->setRule('email', $user->email, null, 'Email');
         if (!$validator->validate()) {
             Session::setError($validator->getErrors());
             Redirect::back();
@@ -49,12 +48,12 @@ class UserController{
             Redirect::back();
         }
 
-        Session::setMessage('registered successfully');
+        Session::setMessage('Registered successfully');
         Redirect::to('');
     }
 
     public function getLogin() {
-        $result['title']='Shop';
+        $result['title'] = 'Log In';
         View::make('user.login', $result);
         if (Auth::isAuth()) {
             View::appendTemplateToLayout('topBar', 'top_bar/user');
@@ -69,7 +68,7 @@ class UserController{
 
     public function postLogin(UserModel $user) {
         if (!Auth::validateUser($user->username, $user->password)) {
-            Session::setError('wrong credentials');
+            Session::setError('Wrong credentials');
             Redirect::back();
         }
 
@@ -82,8 +81,7 @@ class UserController{
     }
 
     public function getProfile() {
-        $result['isEditor'] = Auth::isUserInRole(array('editor', 'admin'));
-        $result['isAdmin'] = Auth::isUserInRole(array('admin'));
+        $result['title'] = 'Profile';
         $result['user'] = $this->user->getUser(Auth::getUserId());
 
         View::make('user.profile', $result);
@@ -95,14 +93,16 @@ class UserController{
 
     public function editProfile(UserModel $user, $new_password) {
         $validator = new Validation();
-        $validator->setRule('required', $user->email);
-        $validator->setRule('required', $user->password);
-        $validator->setRule('email', $user->email);
+        $validator->setRule('required', $user->email, null, 'Email');
+        $validator->setRule('required', $user->password, null, 'Current Password');
+        $validator->setRule('email', $user->email, null, 'Email');
         if (!$validator->validate()) {
+            Session::setError($validator->getErrors());
             Redirect::back();
         }
 
         if ($this->user->editUser(Auth::getUserId(), $user->email, $new_password, $user->password) !== 1) {
+            Session::setError('Current password is not correct');
             Redirect::back();
         }
 
@@ -146,7 +146,7 @@ class UserController{
     }
 
     public function getFavourites() {
-
+        $result['title'] = 'User Favorites';
         $userFavourite = array();
         if(Auth::isAuth()) {
             $favorites = ($this->user->getFavourites(Auth::getUserId()));
@@ -157,12 +157,17 @@ class UserController{
             $userFavourite = Session::get('favourites');
         }
 
+        /* @var $estates \Models\ViewModels\EstateBasicViewModel[] */
         if(!empty($userFavourite)) {
-            $result['estates'] = $this->estate->getFavoritesEstates($userFavourite);
+            $estates = $this->estate->getFavoritesEstates($userFavourite);
+            foreach($estates as $estate){
+                $estate->image = EstateController::setEstateMainImage($estate);
+                $estate->thumbnailName = EstateController::setImageThumb($estate->image);
+            }
+            $result['estates'] = $estates;
         } else {
             $result['estates'] = array();
         }
-
 
         View::make('user.favorites', $result);
         View::appendTemplateToLayout('topBar', 'top_bar/user');

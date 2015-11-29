@@ -3,7 +3,7 @@
 namespace Models;
 
 
-class SearchBindingModel {
+class SearchModel {
 
     public $category_id;
     public $city_id;

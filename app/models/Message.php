@@ -11,16 +11,25 @@ class Message extends Model{
         return $this->db->getAffectedRows();
     }
 
-    public function getAll() {
-        $this->db->prepare('select id,first_name,last_name,email,phone,created_at,is_read from messages');
+    public function getAll($orderBy, $type) {
+        $sql = 'select id,first_name,last_name,email,phone,created_at,is_read from messages order by ';
+        switch($orderBy) {
+            case 'name':
+                $sql .= 'concat(first_name,last_name)';
+                break;
+            default:
+                $sql .= 'created_at';
+        }
+        $sql .= $type == 'desc' ? ' desc' : '';
+        $this->db->prepare($sql);
         $this->db->execute(array());
-        return $this->db->fetchAllAssoc();
+        return $this->db->fetchAllClass('Models\ViewModels\MessageBasicViewModel');
     }
 
     public function getById($id) {
         $this->db->prepare('select first_name,last_name,email,phone,content,for_estate,created_at,is_read from messages where id=?');
         $this->db->execute(array($id));
-        return $this->db->fetchRowAssoc();
+        return $this->db->fetchRowClass('Models\ViewModels\MessageViewModel');
     }
 
     public function markAsRead($id) {

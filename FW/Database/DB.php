@@ -77,7 +77,8 @@ class DB {
     }
 
     public function fetchRowClass($class) {
-        return $this->stmt->fetch(\PDO::FETCH_BOUND, $class);
+        $this->stmt->setFetchMode(\PDO::FETCH_CLASS|\PDO::FETCH_PROPS_LATE, $class);
+        return $this->stmt->fetch();
     }
 
     public function getLastInsertId() {

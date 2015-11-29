@@ -1,6 +1,5 @@
 <?php
 use \FW\View\View;
-use \FW\Helpers\Common;
 use \FW\HTML\Form;
 use \FW\Session\Session;
 ?>

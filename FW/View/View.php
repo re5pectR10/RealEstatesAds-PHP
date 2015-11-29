@@ -14,7 +14,7 @@ class View {
     private static $layoutData = array();
     private static $layout = null;
     private static $type = array();
-    private  static function initViewPath() {
+    private static function initViewPath() {
         
         self::$viewPath = App::getInstance()->getConfig()->app['viewsDirectory'];
         if (self::$viewPath == null) {
@@ -71,14 +71,14 @@ class View {
 
         if (count(self::$layoutParts) > 0) {
             foreach (self::$layoutParts as $k => $v) {
-                $r = self::_includeFile($v);
+                $r = self::_includeFile($v, self::$data);
                 if ($r) {
                     self::$layoutData[$k] = $r;
                 }
             }
         }
         if (self::$layout !== null) {
-            echo self::_includeFile(self::$layout);
+            echo self::_includeFile(self::$layout, self::$data);
         } else {
             throw new \Exception('The layout is missing', 500);
         }
@@ -110,14 +110,18 @@ class View {
         return new static;
     }
 
-    private static function _includeFile($___file) {
+    public static function includePartial($name, array $variables = array()) {
+        return self::_includeFile($name, $variables);
+    }
+
+    private static function _includeFile($___file, array $variables = array()) {
         if (self::$viewDir == null) {
             self::setViewDirectory(self::$viewPath);
         }       
         $___fl = self::$viewDir . str_replace('.', DIRECTORY_SEPARATOR, $___file) . self::$extension;
         if (file_exists($___fl) && is_readable($___fl)) {
             ob_start();
-            extract(self::$data);
+            extract($variables);
             include $___fl;            
             return ob_get_clean();
         } else {

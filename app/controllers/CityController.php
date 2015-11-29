@@ -16,9 +16,8 @@ class CityController {
     private $city;
 
     public function index() {
-        $result['title']='Cities';
-
-        $result['cities']=$this->city->getCities();
+        $result['title'] = 'Cities';
+        $result['cities'] = $this->city->getCities();
 
         View::make('city.index', $result);
         if (Auth::isAuth()) {
@@ -43,9 +42,10 @@ class CityController {
     }
 
     public function getAdd() {
-        $result['title']='Add';
+        $result['title'] = 'Add City';
         $result['action'] = '/admin/city/add';
-        $result['submit'] = 'add';
+        $result['submit'] = 'Add';
+
         View::make('city.add', $result);
         if (Auth::isAuth()) {
             View::appendTemplateToLayout('topBar', 'top_bar/user');
@@ -60,7 +60,7 @@ class CityController {
 
     public function postAdd($name) {
         $validator = new Validation();
-        $validator->setRule('required', $name, null, 'name');
+        $validator->setRule('required', $name, null, 'Name');
         if (!$validator->validate()) {
             Session::setError($validator->getErrors());
             Redirect::back();
@@ -77,9 +77,9 @@ class CityController {
 
     public function getEdit($id) {
         $result = array('city' => $this->city->getCity($id));
-        $result['title']='Edit';
-        $result['action'] = '/admin/city/' . $result['city']['id'] . '/edit';
-        $result['submit'] = 'edit';
+        $result['title'] = 'Edit city';
+        $result['action'] = '/admin/city/' . $result['city']->id . '/edit';
+        $result['submit'] = 'Edit';
 
         View::make('city.add', $result);
         if (Auth::isAuth()) {
@@ -95,7 +95,7 @@ class CityController {
 
     public function postEdit($id, $name) {
         $validator = new Validation();
-        $validator->setRule('required', $name, null, 'name');
+        $validator->setRule('required', $name, null, 'Name');
         if (!$validator->validate()) {
             Session::setError($validator->getErrors());
             Redirect::back();

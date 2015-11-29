@@ -7,13 +7,13 @@ class City extends Model{
     public function getCity($id) {
         $this->db->prepare('select id,name from cities where id=?');
         $this->db->execute(array($id));
-        return $this->db->fetchRowAssoc();
+        return $this->db->fetchRowClass('Models\ViewModels\CityViewModel');
     }
 
     public function getCities() {
         $this->db->prepare('select id,name from cities');
         $this->db->execute();
-        return $this->db->fetchAllAssoc();
+        return $this->db->fetchAllClass('Models\ViewModels\CityViewModel');
     }
 
     public function delete($id) {

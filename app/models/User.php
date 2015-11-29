@@ -6,10 +6,19 @@ class User extends Model {
 
     public function register($username, $email, $pass) {
         if ($this->userExist($username)) {
-            return 'this user already exist';
+            return 'This user already exist';
+        }
+        if ($this->emailExist($email)) {
+            return 'This email already exist';
         }
         $this->db->prepare('insert into users(username,email,password,created_at) values (?,?,?,?)');
         $this->db->execute(array($username,$email,password_hash($pass, PASSWORD_BCRYPT),date("Y-m-d H:i:s")));
+        return $this->db->getAffectedRows();
+    }
+
+    public function emailExist($email) {
+        $this->db->prepare('select id from users where email=?');
+        $this->db->execute(array($email));
         return $this->db->getAffectedRows();
     }
 
@@ -20,14 +29,14 @@ class User extends Model {
     }
 
     public function getUser($id) {
-        $this->db->prepare('select username,password,email from users where id=?');
+        $this->db->prepare('select username,email from users where id=?');
         $this->db->execute(array($id));
-        return $this->db->fetchRowAssoc();
+        return $this->db->fetchRowClass('Models\UserModel');
     }
 
     public function editUser($id, $email, $password, $oldPassword) {
         $user = $this->getUser($id);
-        if (!password_verify($oldPassword, $user['password'])) {
+        if (!password_verify($oldPassword, $user->password)) {
             return false;
         }
 
@@ -41,10 +50,11 @@ class User extends Model {
 
         return $this->db->getAffectedRows();
     }
+
     public function getUsersWithRoles() {
         $this->db->prepare('select u.id,u.username,r.role from users as u left join user_roles as ur on u.id=ur.user_id left join roles as r on r.id=ur.role_id');
         $this->db->execute();
-        return $this->db->fetchAllAssoc();
+        return $this->db->fetchAllClass('Models\ViewModels\UserRoleViewModel');
     }
 
     public function setRole($userId, $roleName) {

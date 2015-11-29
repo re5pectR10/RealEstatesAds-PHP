@@ -9,5 +9,8 @@ use \FW\Helpers\Common;
         <li>
             <a href="<?= Common::getBaseURL() ?>/user/login">Log In</a>
         </li>
+        <li>
+            <a href="<?= Common::getBaseURL() ?>/favorites">Your Favourites</a>
+        </li>
     </ul>
 </div>
