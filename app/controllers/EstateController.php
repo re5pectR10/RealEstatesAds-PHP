@@ -320,9 +320,11 @@ class EstateController {
             $height = $width/$ratio_orig;
         }
         $image_p = imagecreatetruecolor($width, $height);
-        $image = imagecreatefromjpeg($imagesDir . $imageName);
+        $type = exif_imagetype($imagesDir . $imageName);
+
+        $image = $type == 1 ? imagecreatefromgif($imagesDir . $imageName) : imagecreatefromjpeg($imagesDir . $imageName);
         imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
-        imagejpeg($image_p, $imagesDir . $prefix . $imageName, 100);
+        $type == 1 ? imagegif($image_p, $imagesDir . $prefix . $imageName, 100) : imagejpeg($image_p, $imagesDir . $prefix . $imageName, 100);
     }
 
     function reArrayFiles(&$file_post) {
