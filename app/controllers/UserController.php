@@ -148,13 +148,17 @@ class UserController{
     public function getFavourites() {
         $result['title'] = 'User Favorites';
         $userFavourite = array();
+
         if(Auth::isAuth()) {
             $favorites = ($this->user->getFavourites(Auth::getUserId()));
             foreach($favorites as $f) {
                 $userFavourite[] = $f['estate_id'];
             }
+
+            View::appendTemplateToLayout('topBar', 'top_bar/user');
         } else {
             $userFavourite = Session::get('favourites');
+            View::appendTemplateToLayout('topBar', 'top_bar/guest');
         }
 
         /* @var $estates \Models\ViewModels\EstateBasicViewModel[] */
@@ -170,7 +174,6 @@ class UserController{
         }
 
         View::make('user.favorites', $result);
-        View::appendTemplateToLayout('topBar', 'top_bar/user');
         View::appendTemplateToLayout('header', 'includes/header')
             ->appendTemplateToLayout('footer', 'includes/footer')
             ->render();

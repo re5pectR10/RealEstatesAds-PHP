@@ -1,7 +1,6 @@
 <?php
 use \FW\View\View;
 use \FW\Helpers\Common;
-use \FW\Security\Auth;
 /* @var $estates \Models\ViewModels\EstateBasicViewModel[] */
 ?>
 <?= View::getLayoutData('header') ?>

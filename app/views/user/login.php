@@ -1,7 +1,6 @@
 <?php
 use \FW\View\View;
 use \FW\Helpers\Common;
-use \FW\Session\Session;
 use \FW\HTML\Form;
 ?>
 <?= View::getLayoutData('header') ?>

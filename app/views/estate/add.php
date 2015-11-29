@@ -50,6 +50,7 @@ use \FW\Session\Session;
                 </div>
 
                 <div class="form-group">
+                    <?= Form::label('Is Furnished?', array('class' => 'control-label')) ?>
                     <div class="radio">
                         <?= Form::label(Form::radio(array(
                                 'name' => 'is_furnished',
@@ -67,6 +68,7 @@ use \FW\Session\Session;
                 </div>
 
                 <div class="form-group">
+                    <?= Form::label('Ad Type', array('class' => 'control-label')) ?>
                     <div class="radio">
                         <?= Form::label(Form::radio(array(
                                 'name' => 'ad_type',

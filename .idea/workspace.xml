@@ -64,25 +64,25 @@
         <option value="$PROJECT_DIR$/app/views/category/add.php" />
         <option value="$PROJECT_DIR$/app/views/includes/header.php" />
         <option value="$PROJECT_DIR$/app/views/message/add.php" />
-        <option value="$PROJECT_DIR$/app/views/user/login.php" />
         <option value="$PROJECT_DIR$/app/views/user/register.php" />
         <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/models/Message.php" />
         <option value="$PROJECT_DIR$/app/controllers/MessageController.php" />
-        <option value="$PROJECT_DIR$/app/views/message/index.php" />
         <option value="$PROJECT_DIR$/app/models/ViewModels/ImageViewModel.php" />
         <option value="$PROJECT_DIR$/app/models/ViewModels/EstateBasicViewModel.php" />
-        <option value="$PROJECT_DIR$/app/views/top_bar/user.php" />
         <option value="$PROJECT_DIR$/app/views/top_bar/guest.php" />
-        <option value="$PROJECT_DIR$/app/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/app/controllers/EstateController.php" />
-        <option value="$PROJECT_DIR$/app/views/user/favorites.php" />
-        <option value="$PROJECT_DIR$/app/views/index.php" />
         <option value="$PROJECT_DIR$/app/views/includes/footer.php" />
         <option value="$PROJECT_DIR$/FW/View/View.php" />
         <option value="$PROJECT_DIR$/app/views/_EstateBasic.php" />
         <option value="$PROJECT_DIR$/app/views/estate/details.php" />
+        <option value="$PROJECT_DIR$/app/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/app/views/estate/add.php" />
+        <option value="$PROJECT_DIR$/app/views/top_bar/user.php" />
+        <option value="$PROJECT_DIR$/app/views/index.php" />
+        <option value="$PROJECT_DIR$/app/views/user/favorites.php" />
+        <option value="$PROJECT_DIR$/app/views/user/login.php" />
+        <option value="$PROJECT_DIR$/app/views/message/index.php" />
       </list>
     </option>
   </component>
@@ -187,69 +187,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="estate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -268,28 +206,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealEstatesAds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ViewModels" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -362,7 +278,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -530,41 +446,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/roles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="38" selection-start="1742" selection-end="1742" vertical-scroll-proportion="0.78341013" vertical-offset="0" max-vertical-offset="935">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/category/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="48" selection-end="48" vertical-scroll-proportion="0.039170507" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/category/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="23" selection-start="48" selection-end="48" vertical-scroll-proportion="0.01988304" vertical-offset="0" max-vertical-offset="855">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/city/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="36" selection-start="157" selection-end="157" vertical-scroll-proportion="0.078341015" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/city/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="36" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.8350877" vertical-offset="0" max-vertical-offset="855">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Help/helpPage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="408">
@@ -582,55 +463,6 @@
     <entry file="file://$PROJECT_DIR$/app/views/includes/header.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="46" selection-start="1648" selection-end="1648" vertical-scroll-proportion="0.7050691" vertical-offset="0" max-vertical-offset="1105">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/message/details.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="36" selection-start="477" selection-end="477" vertical-scroll-proportion="0.39170507" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/message/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="4" selection-start="10" selection-end="10" vertical-scroll-proportion="-0.11345029" vertical-offset="114" max-vertical-offset="969">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="16" selection-start="981" selection-end="981" vertical-scroll-proportion="0.43087557" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user/profile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="16" selection-start="393" selection-end="709" vertical-scroll-proportion="0.2937788" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user/register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="38" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.45730993" vertical-offset="0" max-vertical-offset="855">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="14" selection-start="3015" selection-end="3015" vertical-scroll-proportion="0.7258065" vertical-offset="339" max-vertical-offset="1207">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/message/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="25" selection-start="242" selection-end="242" vertical-scroll-proportion="0.15906432" vertical-offset="0" max-vertical-offset="855">
           <folding />
         </state>
       </provider>
@@ -654,51 +486,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Estate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="20" selection-start="6983" selection-end="6983" vertical-scroll-proportion="0.78128654" vertical-offset="1321" max-vertical-offset="2176">
-          <folding>
-            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="select e.id,..estates..." />
-            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="select id,na..cities..." />
-            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="delete from ..." />
-            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="update estat..." />
-            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="select main_..estates..." />
-            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="select id fr..estates..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/images/thumb3A00C1E3-BEA3-41F7-9EA2-3A329559B4CE.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/images/thumb48EEA0CC-D928-4597-8106-E9C080982943.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/images/thumbBCA3B7B7-864A-4374-B38A-20BD820B0AE7.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/images/thumbDBFC2F01-1679-4AAB-8683-FFAB1578D0A7.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/ImageController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="0" selection-start="103" selection-end="103" vertical-scroll-proportion="0.09792627" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ViewModels/EstateBasicViewModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="20" selection-start="163" selection-end="163" vertical-scroll-proportion="0.21543778" vertical-offset="0" max-vertical-offset="868">
           <folding />
         </state>
       </provider>
@@ -717,30 +507,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/top_bar/user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="8" selection-start="363" selection-end="461" vertical-scroll-proportion="0.21543778" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/top_bar/guest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="13" selection-start="446" selection-end="446" vertical-scroll-proportion="0.2546083" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user/favorites.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="61" selection-start="133" selection-end="133" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="527">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="256" column="0" selection-start="11573" selection-end="11573" vertical-scroll-proportion="0.8608187" vertical-offset="3565" max-vertical-offset="4420">
           <folding />
         </state>
       </provider>
@@ -752,13 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="65" selection-start="5800" selection-end="5800" vertical-scroll-proportion="0.82373273" vertical-offset="2158" max-vertical-offset="3026">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FW/View/View.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="55" selection-start="2052" selection-end="2052" vertical-scroll-proportion="0.5172811" vertical-offset="792" max-vertical-offset="2363">
@@ -766,12 +528,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ViewModels/EstateBasicViewModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="20" selection-start="163" selection-end="163" vertical-scroll-proportion="0.21543778" vertical-offset="0" max-vertical-offset="868">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Estate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="0.07953216" vertical-offset="0" max-vertical-offset="2176">
+          <folding>
+            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="select e.id,..estates..." />
+            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="select id,na..cities..." />
+            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="update estat..." />
+            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="select main_..estates..." />
+            <marker date="1448740620420" expanded="true" signature="-1:-1" placeholder="select id fr..estates..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/EstateController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="65" selection-start="3358" selection-end="3358" vertical-scroll-proportion="0.47953215" vertical-offset="1341" max-vertical-offset="9622">
+        <state line="153" column="72" selection-start="5254" selection-end="5254" vertical-scroll-proportion="-4.3846154" vertical-offset="2487" max-vertical-offset="9622">
           <folding>
             <element signature="e#31#58#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="0" selection-start="3408" selection-end="3408" vertical-scroll-proportion="-28.423077" vertical-offset="332" max-vertical-offset="1207">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="0" selection-start="5696" selection-end="5696" vertical-scroll-proportion="-26.192308" vertical-offset="2192" max-vertical-offset="3077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/top_bar/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="12" selection-start="173" selection-end="173" vertical-scroll-proportion="0.11751152" vertical-offset="0" max-vertical-offset="868">
+          <folding>
+            <element signature="e#6#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="130" column="61" selection-start="5799" selection-end="5799" vertical-scroll-proportion="0.580117" vertical-offset="1680" max-vertical-offset="4420">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -784,23 +598,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/images/test.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/app/views/user/favorites.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="25" selection-start="177" selection-end="177" vertical-scroll-proportion="0.13709678" vertical-offset="0" max-vertical-offset="868">
+          <folding>
+            <element signature="e#6#24#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="2" selection-start="70" selection-end="70" vertical-scroll-proportion="0.078341015" vertical-offset="0" max-vertical-offset="868">
+          <folding>
+            <element signature="e#6#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user/profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="393" selection-end="709" vertical-scroll-proportion="0.2937788" vertical-offset="0" max-vertical-offset="868">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user/register.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="38" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.45730993" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/message/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="4" selection-start="10" selection-end="10" vertical-scroll-proportion="0.01988304" vertical-offset="0" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/message/details.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="36" selection-start="477" selection-end="477" vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="442">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/message/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="23" selection-start="48" selection-end="48" vertical-scroll-proportion="0.01988304" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/estate/add.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="64" selection-start="6751" selection-end="6751" vertical-scroll-proportion="0.7122807" vertical-offset="1346" max-vertical-offset="2227">
-          <folding>
-            <element signature="e#6898#6940#0" expanded="true" />
-          </folding>
+        <state line="13" column="25" selection-start="266" selection-end="266" vertical-scroll-proportion="0.19883041" vertical-offset="0" max-vertical-offset="2261">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/estate/details.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="42" column="149" selection-start="2220" selection-end="2220" vertical-scroll-proportion="0.7321637" vertical-offset="54" max-vertical-offset="952">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/city/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="25" selection-start="198" selection-end="198" vertical-scroll-proportion="0.15906432" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/city/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="36" selection-start="157" selection-end="157" vertical-scroll-proportion="0.078341015" vertical-offset="0" max-vertical-offset="868">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/category/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="23" selection-start="48" selection-end="48" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/category/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="23" selection-start="48" selection-end="48" vertical-scroll-proportion="0.01988304" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/roles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="38" selection-start="1742" selection-end="1742" vertical-scroll-proportion="0.78341013" vertical-offset="0" max-vertical-offset="935">
           <folding />
         </state>
       </provider>

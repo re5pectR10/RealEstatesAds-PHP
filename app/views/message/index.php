@@ -1,9 +1,11 @@
 <?php
 use \FW\View\View;
 use \FW\Helpers\Common;
-/* @var $messages \Models\ViewModels\MessageBasicViewModel[] */
-/* @var $currentSort string */
-/* @var $currentOrder string */
+/**
+ * @var $messages \Models\ViewModels\MessageBasicViewModel[]
+ * @var $currentSort string
+ * @var $currentOrder string
+ */
 ?>
 <?= View::getLayoutData('header') ?>
 

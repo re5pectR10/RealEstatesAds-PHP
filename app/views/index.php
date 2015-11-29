@@ -2,7 +2,6 @@
 use \FW\View\View;
 use \FW\Helpers\Common;
 use \FW\HTML\Form;
-use \FW\Security\Auth;
 /**
  * @var $categories Models\ViewModels\CategoryViewModel[]
  * @var $cities Models\ViewModels\CityViewModel[]
@@ -119,7 +118,7 @@ use \FW\Security\Auth;
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <?= Form::label('Starting Area', array('for' => 'start_area', 'class' => 'control-label')) ?>
+                                    <?= Form::label('Area (From)', array('for' => 'start_area', 'class' => 'control-label')) ?>
                                 </div>
 
                                 <div class="col-md-8">
@@ -129,7 +128,7 @@ use \FW\Security\Auth;
 
                             <div class="row">
                                 <div class="col-md-4">
-                                    <?= Form::label('End Area', array('for' => 'end_area', 'class' => 'control-label')) ?>
+                                    <?= Form::label('Area (To)', array('for' => 'end_area', 'class' => 'control-label')) ?>
                                 </div>
 
                                 <div class="col-md-8">

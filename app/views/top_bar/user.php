@@ -8,9 +8,6 @@ use \FW\Security\Auth;
             <a href="<?= Common::getBaseURL() ?>/user">Profile</a>
         </li>
         <li>
-            <a href="<?= Common::getBaseURL() ?>/user/logout">Logout</a>
-        </li>
-        <li>
             <a href="<?= Common::getBaseURL() ?>/favorites">Your Favourites</a>
         </li>
         <?php if(Auth::isUserInRole(array('admin'))): ?>
@@ -30,5 +27,8 @@ use \FW\Security\Auth;
                 <a href="<?= Common::getBaseURL() ?>/admin/messages">Messages</a>
             </li>
         <?php endif ?>
+        <li>
+            <a href="<?= Common::getBaseURL() ?>/user/logout">Logout</a>
+        </li>
     </ul>
 </div>
