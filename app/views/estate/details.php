@@ -29,6 +29,7 @@ use \FW\Security\Auth;
                     <h4>Phone: <?= $estate->phone ?></h4>
                     <?php if(Auth::isUserInRole(array('admin'))): ?>
                         <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/estate/<?= $estate->id ?>/edit">Edit</a>
+                        <a onclick="return confirm('Are your sure?')" class="btn btn-danger" href="<?= Common::getBaseURL() ?>/admin/estate/<?= $estate->id ?>/delete">Delete</a>
                     <?php endif ?>
                     <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/estate/<?= $estate->id ?>/message">Send Message</a>
                 </div>

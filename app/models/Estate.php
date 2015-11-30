@@ -6,7 +6,7 @@ namespace Models;
 class Estate extends Model{
 
     public function getEstate($id) {
-        $this->db->prepare('select e.id, e.location, e.price, e.area, e.floor, e.is_furnished, e.description, e.phone, c.name as category, s.name as city, e.ad_type, i.name as image
+        $this->db->prepare('select e.id, e.location, e.price, e.area, e.floor, e.is_furnished, e.description, e.phone, c.name as category, s.name as city, e.ad_type, e.main_image_id, i.name as image
             from estates as e
             join categories as c on c.id=e.category_id
             join cities as s on s.id=e.city_id
@@ -85,14 +85,8 @@ class Estate extends Model{
         return $this->db->fetchAllClass('Models\ViewModels\EstateBasicViewModel');
     }
 
-    public function getCities() {
-        $this->db->prepare('select id,name from cities');
-        $this->db->execute();
-        return $this->db->fetchAllAssoc();
-    }
-
     public function delete($id) {
-        $this->db->prepare('delete from cities where id=?');
+        $this->db->prepare('delete from estates where id=?');
         $this->db->execute(array($id));
         return $this->db->getAffectedRows();
     }

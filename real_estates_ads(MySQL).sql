@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2015 at 02:26 AM
+-- Generation Time: Dec 01, 2015 at 12:13 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `cities` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `cities`
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `estates` (
   KEY `category_id` (`category_id`),
   KEY `city_id` (`city_id`),
   KEY `main_image_id` (`main_image_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 -- --------------------------------------------------------
 
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=80 ;
 
 -- --------------------------------------------------------
 
@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `is_read` tinyint(1) NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -190,15 +190,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
-(1, 'az', 'fc_cska@yahoo.com', '$2y$10$EJYhYXivCdrGbJIjMoxw..xlteNY.bJtymDa.AYN/TL3UQOVStFHK', '2015-11-23 18:47:12'),
-(2, 'test', 'as@as.bg', '$2y$10$UMH6CKb6UrbqnuBMdxsqSe3oIB7cXAuf9noEWm9IZ/il/no7ryUVW', '2015-11-28 20:33:49');
+(3, 'admin', 'admin@admin.admin', '$2y$10$Prsocjts9YV8vLbH9piTAOrsOLkq4iIWaYvQX1CK.54EUJmfnEDM6', '2015-12-01 00:01:21');
 
 -- --------------------------------------------------------
 
@@ -218,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `user_roles` (
 --
 
 INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
-(1, 1);
+(3, 1);
 
 --
 -- Constraints for dumped tables

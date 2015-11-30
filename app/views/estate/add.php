@@ -99,7 +99,7 @@ use \FW\Session\Session;
                     <?= Form::label('Main Image', array('class' => 'control-label')) ?>
                     <?= Form::file(array('name' => 'main_image', 'class' => 'btn btn-primary')) ?>
                     <?php if(isset($estate->image)): ?>
-                        <img style="max-width: 150px;max-height: 100px" src="<?= Common::getBaseDir() . '/images/' . $estate->image ?>" alt="No Image">
+                        <img data-toggle="lightbox" data-remote="<?=  Common::getBaseDir() . 'images/' .  $estate->image ?>" style="max-width: 300px;max-height: 200px" src="<?=  Common::getBaseDir() . 'images/' . (isset($estate->thumbnailName) ? $estate->thumbnailName : $estate->image) ?>" alt="No Image">
                         <a class="btn bg-danger" href="<?= Common::getBaseURL() ?>/admin/image/delete/<?= $estate->main_image_id ?>">Delete</a>
                     <?php endif; ?>
                 </div>

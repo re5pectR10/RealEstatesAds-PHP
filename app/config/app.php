@@ -18,8 +18,8 @@ return array(
 
     'namespaces' => array(
 
-        'Controllers' => dirname(__DIR__) . '\controllers',
-        'Models' => dirname(__DIR__) . '\models'
+        'Controllers' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'controllers',
+        'Models' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'models'
     ),
 
     'session' => array(

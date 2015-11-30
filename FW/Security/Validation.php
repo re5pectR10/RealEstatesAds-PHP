@@ -875,6 +875,10 @@ class Validation implements IValidator{
         return strtotime($val1) < strtotime($val2);
     }
 
+    public static function postMaxSize($val1) {
+        return !(empty($_FILES) && empty($_POST) && isset($_SERVER['REQUEST_METHOD']) && strtolower($_SERVER['REQUEST_METHOD']) == 'post');
+    }
+
     public static function custom($val1, $val2) {
         if ($val2 instanceof \Closure) {
             return (boolean) call_user_func($val2, $val1);

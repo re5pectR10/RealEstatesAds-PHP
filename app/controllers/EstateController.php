@@ -2,6 +2,8 @@
 
 namespace Controllers;
 
+use FW\Helpers\Common;
+use FW\Helpers\DependencyProvider;
 use FW\Security\IValidator;
 use FW\View\View;
 use FW\Security\Auth;
@@ -13,6 +15,7 @@ use Models\SearchModel;
 use Models\ViewModels\CategoryViewModel;
 use Models\ViewModels\CityViewModel;
 use Models\ViewModels\EstateViewModel;
+use Models\ViewModels\ImageViewModel;
 
 class EstateController {
 
@@ -21,8 +24,9 @@ class EstateController {
     const IMAGE_THUMBNAIL_HEIGHT = 200;
     const IMAGE_MAX_WIDTH_WITHOUT_RESIZE = 400;
     const IMAGE_MAX_HEIGHT_WITHOUT_RESIZE = 300;
-    const IMAGE_DIR = 'images/';
+    const IMAGE_DIR = 'images';
     const DEFAULT_IMAGE_NAME = 'No_image_available.jpg';
+    const TWEAK_FACTOR = 1.8;
 
     /**
      * @var \Models\Estate
@@ -44,6 +48,10 @@ class EstateController {
      * @var \Models\User
      */
     private $user;
+
+    function  __construct() {
+        ini_set('memory_limit', '512M');
+    }
 
     public function index(SearchModel $searchCriteria){
         $result['title'] = 'Estates';
@@ -109,6 +117,10 @@ class EstateController {
         $result['title'] = 'Details';
         /* @var $estate \Models\ViewModels\EstateViewModel */
         $estate = $this->estate->getEstate($id);
+        if (empty($estate)) {
+            Session::setError('Wrong estate id');
+            Redirect::to('');
+        }
         $estate->images = $this->image->getImagesByEstate($id);
         foreach($estate->images as $i) {
             $i->thumbnailName = $this->setImageThumb($i->name);
@@ -262,16 +274,41 @@ class EstateController {
         Redirect::to('');
     }
 
+    public function delete($id) {
+        /* @var $estate \Models\ViewModels\EstateViewModel */
+        $estate = $this->estate->getEstate($id);
+        /* @var $images \Models\ViewModels\ImageViewModel[] */
+        $images = $this->image->getImagesByEstate($id);
+        if ($this->estate->delete($id) !== 1) {
+            Session::setError('something went wrong. try again');
+            Redirect::back();
+        }
+
+        /* @var $imageController \Controllers\ImageController */
+        $imageController = DependencyProvider::injectDependenciesToController(new ImageController());
+        if (isset($estate->main_image_id)) {
+            $mainImg = new ImageViewModel();
+            $mainImg->id = $estate->main_image_id;
+            $mainImg->name = $estate->image;
+            $images[] = $mainImg;
+        }
+
+        $imageController->removeMultiple($images);
+
+        Session::setMessage('The estate is deleted');
+        Redirect::to('');
+    }
+
     /**
      * @param EstateAdBindingModel $estate
      * @return null|string
      */
     public function addEstateMainImage(EstateAdBindingModel $estate) {
         $imageId = null;
-        $imageName = $this->saveFile($estate->main_image, EstateController::IMAGE_DIR);
+        $imageName = $this->saveFile($estate->main_image, EstateController::IMAGE_DIR . DIRECTORY_SEPARATOR);
         if (!empty($imageName)) {
             $imageId = $this->image->add($imageName);
-            if ($this->imageIsBiggerThan(EstateController::IMAGE_DIR .$imageName, EstateController::IMAGE_MAX_WIDTH_WITHOUT_RESIZE, EstateController::IMAGE_MAX_HEIGHT_WITHOUT_RESIZE)) {
+            if ($this->validateImageDimensions(EstateController::IMAGE_DIR . DIRECTORY_SEPARATOR . $imageName, EstateController::IMAGE_MAX_WIDTH_WITHOUT_RESIZE, EstateController::IMAGE_MAX_HEIGHT_WITHOUT_RESIZE)) {
                 $this->createImageThumbnail($imageName,
                     EstateController::IMAGE_THUMBNAIL_WIDTH,
                     EstateController::IMAGE_THUMBNAIL_HEIGHT,
@@ -290,11 +327,11 @@ class EstateController {
      */
     public function addEstateAdditionalImages($id, EstateAdBindingModel $estate) {
         foreach($estate->images as $image) {
-            $imageName = $this->saveFile($image, EstateController::IMAGE_DIR);
+            $imageName = $this->saveFile($image, EstateController::IMAGE_DIR . DIRECTORY_SEPARATOR);
             if(!empty($imageName)) {
                 $imageId = $this->image->add($imageName);
                 $this->image->addImageToEstate($id, $imageId);
-                if ($this->imageIsBiggerThan(EstateController::IMAGE_DIR .$imageName, EstateController::IMAGE_MAX_WIDTH_WITHOUT_RESIZE, EstateController::IMAGE_MAX_HEIGHT_WITHOUT_RESIZE)) {
+                if ($this->validateImageDimensions(EstateController::IMAGE_DIR . DIRECTORY_SEPARATOR . $imageName, EstateController::IMAGE_MAX_WIDTH_WITHOUT_RESIZE, EstateController::IMAGE_MAX_HEIGHT_WITHOUT_RESIZE)) {
                     $this->createImageThumbnail($imageName,
                         EstateController::IMAGE_THUMBNAIL_WIDTH,
                         EstateController::IMAGE_THUMBNAIL_HEIGHT,
@@ -306,13 +343,19 @@ class EstateController {
         }
     }
 
-    public function imageIsBiggerThan($filename, $width, $height) {
+    public function checkImageResizeNotExceedMemoryLimit($size) {
+        return (($size[0] * $size[1] * 3) * EstateController::TWEAK_FACTOR) +
+            ((EstateController::IMAGE_THUMBNAIL_WIDTH * EstateController::IMAGE_THUMBNAIL_HEIGHT * 3) * EstateController::TWEAK_FACTOR)
+            + 5 * 1024 * 1024 < Common::getMemoryLimit();
+    }
+
+    public function validateImageDimensions($filename, $width, $height) {
         $size = getimagesize($filename);
-        return $size[0] > $width || $size[1] > $height;
+        return $this->checkImageResizeNotExceedMemoryLimit($size) && ($size[0] > $width || $size[1] > $height);
     }
 
     public function createImageThumbnail($imageName, $width, $height, $prefix, $imagesDir) {
-        list($width_orig, $height_orig) = getimagesize($imagesDir . $imageName);
+        list($width_orig, $height_orig) = getimagesize($imagesDir . DIRECTORY_SEPARATOR . $imageName);
 
         $ratio_orig = $width_orig/$height_orig;
 
@@ -322,11 +365,11 @@ class EstateController {
             $height = $width/$ratio_orig;
         }
         $image_p = imagecreatetruecolor($width, $height);
-        $type = exif_imagetype($imagesDir . $imageName);
+        $type = exif_imagetype($imagesDir . DIRECTORY_SEPARATOR . $imageName);
 
-        $image = $type == 1 ? imagecreatefromgif($imagesDir . $imageName) : imagecreatefromjpeg($imagesDir . $imageName);
+        $image = $type == 1 ? imagecreatefromgif($imagesDir . DIRECTORY_SEPARATOR . $imageName) : imagecreatefromjpeg($imagesDir . DIRECTORY_SEPARATOR . $imageName);
         imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width_orig, $height_orig);
-        $type == 1 ? imagegif($image_p, $imagesDir . $prefix . $imageName, 100) : imagejpeg($image_p, $imagesDir . $prefix . $imageName, 100);
+        $type == 1 ? imagegif($image_p, $imagesDir . DIRECTORY_SEPARATOR . $prefix . $imageName, 100) : imagejpeg($image_p, $imagesDir . DIRECTORY_SEPARATOR . $prefix . $imageName, 100);
     }
 
     function reArrayFiles(&$file_post) {
@@ -410,10 +453,10 @@ class EstateController {
                 return 'price';
                 break;
             case 1:
-                return 'area/price';
+                return 'price/area';
                 break;
             default:
-                return 'created_at';
+                return 'created_at desc';
         }
     }
 
@@ -447,7 +490,7 @@ class EstateController {
     }
 
     public static function setImageThumb($imageName) {
-        if(file_exists(EstateController::IMAGE_DIR . EstateController::IMAGE_THUMBNAIL_PREFIX . $imageName) && $imageName != EstateController::DEFAULT_IMAGE_NAME) {
+        if(file_exists(EstateController::IMAGE_DIR . DIRECTORY_SEPARATOR . EstateController::IMAGE_THUMBNAIL_PREFIX . $imageName) && $imageName != EstateController::DEFAULT_IMAGE_NAME) {
             return EstateController::IMAGE_THUMBNAIL_PREFIX . $imageName;
         }
 
@@ -498,7 +541,7 @@ class EstateController {
                 )
             ),
             array(
-                'text' => 'm2 / Price',
+                'text' => 'Price / m2',
                 'options' => array(
                     'value' => 1
                 )
@@ -554,6 +597,8 @@ class EstateController {
 
         $validator->setRule('mimeTypes', $estate->main_image, 'jpg,gif', 'Main Image');
         $validator->setRule('lt', $estate->main_image['size'], 20971520, 'Main Image');
+
+        $validator->setRule('postMaxSize', ini_get('post_max_size'), null, null);
 
         foreach($estate->images as $image) {
             $validator->setRule('mimeTypes', $image, 'jpg,gif', 'Main Image');

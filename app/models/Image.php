@@ -34,4 +34,14 @@ class Image extends Model{
         $this->db->execute(array($id));
         return $this->db->fetchRowClass('Models\ViewModels\ImageViewModel');
     }
+
+    public function deleteMultiple(array $ids) {
+        $ids = array_filter($ids);
+        if (empty($ids)) {
+            return 1;
+        }
+        $this->db->prepare('delete from images where id in (' . join(',', array_fill(0, count($ids), '?')) . ')');
+        $this->db->execute($ids);
+        return $this->db->getAffectedRows();
+    }
 } 

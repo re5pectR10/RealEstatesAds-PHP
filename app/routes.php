@@ -42,11 +42,11 @@ Route::Group('admin', array('roles' => 'admin', 'before' => 'auth'), function() 
     });
 
     Route::Group('/estate', array(), function() {
-        Route::GET('/{id:int}/delete', array('use' => 'EstateController@deleteEstate'));
         Route::GET('/add', array('use' => 'EstateController@getAdd'));
         Route::POST('/add', array('use' => 'EstateController@postAdd'));
         Route::GET('/{id:int}/edit', array('use' => 'EstateController@getEdit'));
         Route::POST('/{id:int}/edit', array('use' => 'EstateController@postEdit'));
+        Route::GET('/{id:int}/delete', array('use' => 'EstateController@delete'));
     });
 
     Route::GET('/image/delete/{id:int}', array('use' => 'ImageController@delete'));

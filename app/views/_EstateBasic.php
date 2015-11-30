@@ -8,13 +8,14 @@ use \FW\Security\Auth;
 </div>
 
 <div class="media-body">
-    <h3 class="pull-right"><?= $estate->price ?> EUR</h3>
+    <a href="<?= Common::getBaseURL() ?>/estate/<?= $estate->id ?>"><h3 class="pull-right"><?= $estate->price ?> EUR</h3></a>
     <h5>ID: <?= $estate->id ?></h5>
-    <address><?= $estate->city ?>: <?= $estate->location ?></address>
+    <a href="<?= Common::getBaseURL() ?>/estate/<?= $estate->id ?>"><address><?= $estate->city ?>: <?= $estate->location ?></address></a>
     <p>Category: <?= $estate->category ?></p>
     <a class="btn bg-success pull-right" href="<?= Common::getBaseURL() ?>/estate/<?= $estate->id ?>">Details</a>
     <h4><?= $estate->area ?> m2 (<?= $estate->ad_type == 1 ? 'For Sale' : 'For Rent' ?>)</h4>
     <?php if(Auth::isUserInRole(array('admin'))): ?>
+        <a onclick="return confirm('Are your sure?')" class="btn btn-danger" href="<?= Common::getBaseURL() ?>/admin/estate/<?= $estate->id ?>/delete">Delete</a>
         <a class="btn btn-primary" href="<?= Common::getBaseURL() ?>/admin/estate/<?= $estate->id ?>/edit">Edit</a>
     <?php endif ?>
 </div>

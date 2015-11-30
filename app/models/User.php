@@ -29,7 +29,7 @@ class User extends Model {
     }
 
     public function getUser($id) {
-        $this->db->prepare('select username,email from users where id=?');
+        $this->db->prepare('select username,email,password from users where id=?');
         $this->db->execute(array($id));
         return $this->db->fetchRowClass('Models\UserModel');
     }
