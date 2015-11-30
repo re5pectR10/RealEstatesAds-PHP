@@ -4,6 +4,7 @@ namespace FW\Security;
 
 use FW\App;
 use FW\Database\DB;
+use FW\Helpers\Common;
 
 class Auth {
 
@@ -84,7 +85,8 @@ class Auth {
         if (count($result) < 1) {
             return false;
         }
-        if (!password_verify($password, $result[0][$appInstance->getConfig()->app['user_table']['password']])) {
+
+        if (!Common::verifyPassword($password, $result[0][$appInstance->getConfig()->app['user_table']['password']])) {
             return false;
         }
 

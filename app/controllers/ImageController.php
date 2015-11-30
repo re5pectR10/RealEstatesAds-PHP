@@ -22,6 +22,7 @@ class ImageController {
         }
 
         unlink(Common::getPublicFilesDir() . $image->name);
+        unlink(Common::getPublicFilesDir() . EstateController::IMAGE_THUMBNAIL_PREFIX . $image->name);
 
         Session::setMessage('The image has been deleted');
         Redirect::back();

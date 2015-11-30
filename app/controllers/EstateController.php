@@ -163,7 +163,7 @@ class EstateController {
             $imageId = $this->addEstateMainImage($estate);
         }
 
-        $estateId =$this->estate->add($estate->location,
+        $estateId = $this->estate->add($estate->location,
             $estate->price,
             $estate->area,
             $estate->floor,
@@ -271,12 +271,14 @@ class EstateController {
         $imageName = $this->saveFile($estate->main_image, EstateController::IMAGE_DIR);
         if (!empty($imageName)) {
             $imageId = $this->image->add($imageName);
-            $this->createImageThumbnail($imageName,
-                EstateController::IMAGE_THUMBNAIL_WIDTH,
-                EstateController::IMAGE_THUMBNAIL_HEIGHT,
-                EstateController::IMAGE_THUMBNAIL_PREFIX,
-                EstateController::IMAGE_DIR
-            );
+            if ($this->imageIsBiggerThan(EstateController::IMAGE_DIR .$imageName, EstateController::IMAGE_MAX_WIDTH_WITHOUT_RESIZE, EstateController::IMAGE_MAX_HEIGHT_WITHOUT_RESIZE)) {
+                $this->createImageThumbnail($imageName,
+                    EstateController::IMAGE_THUMBNAIL_WIDTH,
+                    EstateController::IMAGE_THUMBNAIL_HEIGHT,
+                    EstateController::IMAGE_THUMBNAIL_PREFIX,
+                    EstateController::IMAGE_DIR
+                );
+            }
         }
 
         return $imageId;
@@ -343,7 +345,7 @@ class EstateController {
     }
 
     private function saveFile($file, $dir){
-        $fileName = trim(com_create_guid(), '{}');
+        $fileName = uniqid();//trim(com_create_guid(), '{}');
         $filePath = $dir . $fileName;
         if(move_uploaded_file($file['tmp_name'], $filePath . '.' . pathinfo($file['name'], PATHINFO_EXTENSION))) {
             return $fileName . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);

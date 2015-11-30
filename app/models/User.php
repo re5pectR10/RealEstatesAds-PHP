@@ -12,7 +12,7 @@ class User extends Model {
             return 'This email already exist';
         }
         $this->db->prepare('insert into users(username,email,password,created_at) values (?,?,?,?)');
-        $this->db->execute(array($username,$email,password_hash($pass, PASSWORD_BCRYPT),date("Y-m-d H:i:s")));
+        $this->db->execute(array($username, $email, $pass, date("Y-m-d H:i:s")));
         return $this->db->getAffectedRows();
     }
 
@@ -34,15 +34,10 @@ class User extends Model {
         return $this->db->fetchRowClass('Models\UserModel');
     }
 
-    public function editUser($id, $email, $password, $oldPassword) {
-        $user = $this->getUser($id);
-        if (!password_verify($oldPassword, $user->password)) {
-            return false;
-        }
-
+    public function editUser($id, $email, $password) {
         if (strlen($password) > 0) {
             $this->db->prepare('update users set email=?,password=? where id=?');
-            $this->db->execute(array($email, password_hash($password, PASSWORD_BCRYPT), $id));
+            $this->db->execute(array($email, $password, $id));
         } else {
             $this->db->prepare('update users set email=? where id=?');
             $this->db->execute(array($email, $id));

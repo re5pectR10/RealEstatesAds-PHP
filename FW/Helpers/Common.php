@@ -4,7 +4,7 @@ namespace FW\Helpers;
 class Common {
    
     public static function normalize($data,$types){
-        $types=  explode('|', $types);
+        $types = explode('|', $types);
         if(is_array($types)){
             foreach($types as $v){
                 if($v=='int'){
@@ -155,6 +155,35 @@ class Common {
     public static function endsWith($haystack, $needle) {
         // search forward starting from end minus needle length characters
         return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
+    }
+
+    public static function hash($string) {
+        $salt = substr(strtr(base64_encode(openssl_random_pseudo_bytes(22)), '+', '.'), 0, 22);
+        return crypt($string, '$2y$12$' . $salt);
+    }
+
+    public static function validateHash($string, $hash) {
+        return $hash == crypt($string, $hash);
+    }
+
+    public static function hashPassword($password) {
+        if (version_compare(phpversion(), '5.5.0', '>=')) {
+            $password = password_hash($password, PASSWORD_BCRYPT);
+        } else {
+            $password = Common::hash($password);
+        }
+
+        return $password;
+    }
+
+    public static function verifyPassword($password, $hash) {
+        if (version_compare(phpversion(), '5.5.0', '>=')) {
+            $isPasswordValid = password_verify($password, $hash);
+        } else {
+            $isPasswordValid = Common::validateHash($password, $hash);
+        }
+
+        return $isPasswordValid;
     }
 }
 

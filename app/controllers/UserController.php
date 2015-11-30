@@ -1,11 +1,13 @@
 <?php
 
 namespace Controllers;
+use FW\Helpers\Common;
 use FW\Security\Auth;
 use FW\Helpers\Redirect;
 use FW\Session\Session;
 use FW\Security\Validation;
 use FW\View\View;
+use Models\Model;
 use Models\UserModel;
 
 class UserController{
@@ -43,7 +45,7 @@ class UserController{
             Redirect::back();
         }
 
-        if (($result = $this->user->register($user->username, $user->email, $user->password)) !== 1) {
+        if (($result = $this->user->register($user->username, $user->email, Common::hashPassword($user->password))) !== 1) {
             Session::setError($result);
             Redirect::back();
         }
@@ -101,8 +103,15 @@ class UserController{
             Redirect::back();
         }
 
-        if ($this->user->editUser(Auth::getUserId(), $user->email, $new_password, $user->password) !== 1) {
+        /* @var $user \Models\UserModel */
+        $userFromDb = $this->user->getUser(Auth::getUserId());
+        if (!Common::verifyPassword($user->password, $userFromDb->password)) {
             Session::setError('Current password is not correct');
+            Redirect::back();
+        }
+
+        if ($this->user->editUser(Auth::getUserId(), $user->email, Common::hashPassword($new_password)) !== 1) {
+            Session::setError('Something is wrong. Try again.');
             Redirect::back();
         }
 
