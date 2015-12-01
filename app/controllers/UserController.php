@@ -38,8 +38,10 @@ class UserController{
     public function postRegister(UserModel $user) {
         $validator = new Validation();
         $validator->setRule('required', $user->username, null, 'Username');
+        $validator->setRule('maxlength', $user->username, 50, 'Username');
         $validator->setRule('required', $user->password, null, 'Password');
         $validator->setRule('email', $user->email, null, 'Email');
+        $validator->setRule('maxlength', $user->email, 50, 'Email');
         if (!$validator->validate()) {
             Session::setError($validator->getErrors());
             Redirect::back();
