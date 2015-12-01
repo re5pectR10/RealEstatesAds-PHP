@@ -21,32 +21,32 @@ use \FW\Session\Session;
 
                 <div class="form-group">
                     <?= Form::label('Area', array('for' => 'area', 'class' => 'control-label')) ?>
-                    <?= Form::text(array('name' => 'area', 'id' => 'area' , 'placeholder' => 'Area', 'value' => isset($estate) ? $estate->area : Session::oldInput()['area'], 'class' => 'form-control')) ?>
+                    <?= Form::text(array('name' => 'area', 'id' => 'area' , 'placeholder' => 'Area', 'value' => isset($estate) ? $estate->area : Session::oldInput()['area'], 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">
                     <?= Form::label('Price (euro)', array('for' => 'price', 'class' => 'control-label')) ?>
-                    <?= Form::text(array('name' => 'price',  'id' => 'price' ,'placeholder' => 'Price (euro)', 'value' => isset($estate) ? $estate->price : Session::oldInput()['price'], 'class' => 'form-control')) ?>
+                    <?= Form::text(array('name' => 'price',  'id' => 'price' ,'placeholder' => 'Price (euro)', 'value' => isset($estate) ? $estate->price : Session::oldInput()['price'], 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">
                     <?= Form::label('Location', array('for' => 'location', 'class' => 'control-label')) ?>
-                    <?= Form::text(array('name' => 'location',  'id' => 'location' ,'placeholder' => 'Location', 'value' => isset($estate) ? $estate->location : Session::oldInput()['location'], 'class' => 'form-control')) ?>
+                    <?= Form::text(array('name' => 'location',  'id' => 'location' ,'placeholder' => 'Location', 'value' => isset($estate) ? $estate->location : Session::oldInput()['location'], 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">
                     <?= Form::label('Floor', array('for' => 'floor', 'class' => 'control-label')) ?>
-                    <?= Form::text(array('name' => 'floor',  'id' => 'floor' ,'placeholder' => 'Floor', 'value' => isset($estate) ? $estate->floor : Session::oldInput()['floor'], 'class' => 'form-control')) ?>
+                    <?= Form::text(array('name' => 'floor',  'id' => 'floor' ,'placeholder' => 'Floor', 'value' => isset($estate) ? $estate->floor : Session::oldInput()['floor'], 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">
                     <?= Form::label('Phone', array('for' => 'phone', 'class' => 'control-label')) ?>
-                    <?= Form::text(array('name' => 'phone',  'id' => 'phone' ,'placeholder' => 'Phone', 'value' => isset($estate) ? $estate->phone : Session::oldInput()['phone'], 'class' => 'form-control')) ?>
+                    <?= Form::text(array('name' => 'phone',  'id' => 'phone' ,'placeholder' => 'Phone', 'value' => isset($estate) ? $estate->phone : Session::oldInput()['phone'], 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">
                     <?= Form::label('Description', array('for' => 'description', 'class' => 'control-label')) ?>
-                    <?= Form::textarea(isset($estate) ? $estate->description : Session::oldInput()['description'], array('name' => 'description', 'id' => 'description' ,'placeholder' => 'Write description here', 'rows' => '4', 'cols' => '100', 'class' => 'form-control')) ?>
+                    <?= Form::textarea(isset($estate) ? $estate->description : Session::oldInput()['description'], array('name' => 'description', 'id' => 'description' ,'placeholder' => 'Write description here', 'rows' => '4', 'cols' => '100', 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">

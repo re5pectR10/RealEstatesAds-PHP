@@ -13,7 +13,7 @@ use \FW\HTML\Form;
             <div class="col-md-12">
 
                 <?= Form::open(array('action' => Common::getBaseURL().$action)) ?>
-                <?= Form::text(array('name' => 'name', 'placeholder' => 'Name', 'value' => isset($category) ? $category->name : '', 'class' => 'form-control')) ?>
+                <?= Form::text(array('name' => 'name', 'placeholder' => 'Name', 'value' => isset($category) ? $category->name : '', 'class' => 'form-control', 'required' => '')) ?>
                 <?= Form::submit(array('name' => 'submit', 'value' => $submit, 'class' => 'btn btn-success')) ?>
                 <?= Form::close() ?>
             </div>

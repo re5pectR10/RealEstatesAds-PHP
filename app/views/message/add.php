@@ -15,22 +15,22 @@ use \FW\Session\Session;
 
                 <div class="form-group">
                     <?= Form::label('First Name', array('for' => 'first_name', 'class' => 'control-label')) ?>
-                    <?= Form::text(array('name' => 'first_name', 'id' => 'first_name' , 'placeholder' => 'Name', 'value' => Session::oldInput()['first_name'], 'class' => 'form-control')) ?>
+                    <?= Form::text(array('name' => 'first_name', 'id' => 'first_name' , 'placeholder' => 'Name', 'value' => Session::oldInput()['first_name'], 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">
                     <?= Form::label('Lst Name', array('for' => 'last_name', 'class' => 'control-label')) ?>
-                    <?= Form::text(array('name' => 'last_name', 'id' => 'last_name' , 'placeholder' => 'Name', 'value' => Session::oldInput()['last_name'], 'class' => 'form-control')) ?>
+                    <?= Form::text(array('name' => 'last_name', 'id' => 'last_name' , 'placeholder' => 'Name', 'value' => Session::oldInput()['last_name'], 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">
                     <?= Form::label('Email', array('for' => 'email', 'class' => 'control-label')) ?>
-                    <?= Form::text(array('name' => 'email', 'id' => 'email' , 'placeholder' => 'Email', 'value' => Session::oldInput()['email'], 'class' => 'form-control')) ?>
+                    <?= Form::text(array('name' => 'email', 'id' => 'email' , 'placeholder' => 'Email', 'value' => Session::oldInput()['email'], 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">
                     <?= Form::label('Phone', array('for' => 'phone', 'class' => 'control-label')) ?>
-                    <?= Form::text(array('name' => 'phone', 'id' => 'phone' , 'placeholder' => 'Phone', 'value' => Session::oldInput()['phone'], 'class' => 'form-control')) ?>
+                    <?= Form::text(array('name' => 'phone', 'id' => 'phone' , 'placeholder' => 'Phone', 'value' => Session::oldInput()['phone'], 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <div class="form-group">
@@ -40,7 +40,7 @@ use \FW\Session\Session;
 
                 <div class="form-group">
                     <?= Form::label('Content', array('for' => 'content', 'class' => 'control-label')) ?>
-                    <?= Form::textarea(Session::oldInput()['content'], array('name' => 'content', 'id' => 'content' , 'placeholder' => 'Content', 'class' => 'form-control')) ?>
+                    <?= Form::textarea(Session::oldInput()['content'], array('name' => 'content', 'id' => 'content' , 'placeholder' => 'Content', 'class' => 'form-control', 'required' => '')) ?>
                 </div>
 
                 <?= Form::submit(array('class' => 'btn btn-success', 'value' => 'Send')) ?>

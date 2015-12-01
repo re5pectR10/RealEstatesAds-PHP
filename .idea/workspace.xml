@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserController.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
+      <file leaf-file-name="add.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/estate/add.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="38" selection-start="1260" selection-end="1260" vertical-scroll-proportion="0.640553" vertical-offset="56" max-vertical-offset="3230">
+            <state line="48" column="287" selection-start="2948" selection-end="2948" vertical-scroll-proportion="0.094736844" vertical-offset="684" max-vertical-offset="2261">
               <folding />
             </state>
           </provider>
@@ -47,7 +47,6 @@
         <option value="$PROJECT_DIR$/app/models/ViewModels/CityViewModel.php" />
         <option value="$PROJECT_DIR$/app/models/City.php" />
         <option value="$PROJECT_DIR$/app/views/city/index.php" />
-        <option value="$PROJECT_DIR$/app/views/city/add.php" />
         <option value="$PROJECT_DIR$/app/models/ViewModels/MessageBasicViewModel.php" />
         <option value="$PROJECT_DIR$/FW/Database/DB.php" />
         <option value="$PROJECT_DIR$/app/models/ViewModels/EstateViewModel.php" />
@@ -60,9 +59,6 @@
         <option value="$PROJECT_DIR$/app/controllers/CategoryController.php" />
         <option value="$PROJECT_DIR$/app/controllers/CityController.php" />
         <option value="$PROJECT_DIR$/app/views/admin/roles.php" />
-        <option value="$PROJECT_DIR$/app/views/category/add.php" />
-        <option value="$PROJECT_DIR$/app/views/message/add.php" />
-        <option value="$PROJECT_DIR$/app/views/user/register.php" />
         <option value="$PROJECT_DIR$/app/models/Message.php" />
         <option value="$PROJECT_DIR$/app/controllers/MessageController.php" />
         <option value="$PROJECT_DIR$/app/models/ViewModels/ImageViewModel.php" />
@@ -72,7 +68,6 @@
         <option value="$PROJECT_DIR$/app/views/top_bar/user.php" />
         <option value="$PROJECT_DIR$/app/views/index.php" />
         <option value="$PROJECT_DIR$/app/views/user/favorites.php" />
-        <option value="$PROJECT_DIR$/app/views/user/login.php" />
         <option value="$PROJECT_DIR$/app/views/message/index.php" />
         <option value="$PROJECT_DIR$/FW/Security/Auth.php" />
         <option value="$PROJECT_DIR$/FW/Helpers/Common.php" />
@@ -91,8 +86,13 @@
         <option value="$PROJECT_DIR$/app/public/css/custom.css" />
         <option value="$PROJECT_DIR$/app/views/_EstateBasic.php" />
         <option value="$PROJECT_DIR$/app/views/estate/details.php" />
-        <option value="$PROJECT_DIR$/app/views/estate/add.php" />
         <option value="$PROJECT_DIR$/app/controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/app/views/user/login.php" />
+        <option value="$PROJECT_DIR$/app/views/user/register.php" />
+        <option value="$PROJECT_DIR$/app/views/city/add.php" />
+        <option value="$PROJECT_DIR$/app/views/category/add.php" />
+        <option value="$PROJECT_DIR$/app/views/message/add.php" />
+        <option value="$PROJECT_DIR$/app/views/estate/add.php" />
       </list>
     </option>
   </component>
@@ -189,6 +189,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="estate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealEstatesAds" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -262,8 +302,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -276,7 +316,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -386,24 +426,9 @@
         <state line="6" column="12" selection-start="173" selection-end="173" vertical-scroll-proportion="0.11751152" vertical-offset="0" max-vertical-offset="868" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="2" selection-start="70" selection-end="70" vertical-scroll-proportion="0.078341015" vertical-offset="0" max-vertical-offset="868" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/user/profile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="16" selection-start="393" selection-end="709" vertical-scroll-proportion="0.2937788" vertical-offset="0" max-vertical-offset="868" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user/register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="38" selection-start="1137" selection-end="1137" vertical-scroll-proportion="0.45730993" vertical-offset="0" max-vertical-offset="855" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/message/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="4" selection-start="10" selection-end="10" vertical-scroll-proportion="0.01988304" vertical-offset="0" max-vertical-offset="969" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/message/index.php">
@@ -520,20 +545,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/city/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="36" selection-start="157" selection-end="157" vertical-scroll-proportion="0.078341015" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/category/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="4" selection-start="10" selection-end="10" vertical-scroll-proportion="0.019585254" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/city/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="77" selection-start="1013" selection-end="1056" vertical-scroll-proportion="0.55672514" vertical-offset="0" max-vertical-offset="855">
@@ -611,13 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/estate/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="48" selection-start="5976" selection-end="5976" vertical-scroll-proportion="0.4619883" vertical-offset="1271" max-vertical-offset="2261">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/EstateController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="594" column="0" selection-start="20908" selection-end="20908" vertical-scroll-proportion="11.067836" vertical-offset="635" max-vertical-offset="10455">
@@ -658,6 +662,48 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="43" column="38" selection-start="1260" selection-end="1260" vertical-scroll-proportion="0.640553" vertical-offset="56" max-vertical-offset="3230">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="139" selection-start="947" selection-end="947" vertical-scroll-proportion="0.39170507" vertical-offset="0" max-vertical-offset="868">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user/register.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="139" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.39766082" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/city/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="167" selection-start="527" selection-end="527" vertical-scroll-proportion="0.25847954" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/category/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="175" selection-start="543" selection-end="543" vertical-scroll-proportion="0.25847954" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/message/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="189" selection-start="2496" selection-end="2496" vertical-scroll-proportion="0.7754386" vertical-offset="17" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/estate/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="287" selection-start="2948" selection-end="2948" vertical-scroll-proportion="0.094736844" vertical-offset="684" max-vertical-offset="2261">
           <folding />
         </state>
       </provider>
