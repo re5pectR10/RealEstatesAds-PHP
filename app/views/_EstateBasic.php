@@ -4,7 +4,7 @@ use \FW\Security\Auth;
 /* @var $estate \Models\ViewModels\EstateBasicViewModel */
 ?>
 <div class="media-left col-lg-2">
-    <img data-toggle="lightbox" data-remote="<?=  Common::getBaseDir() . 'images/' .  $estate->image ?>" class="center-block" style="max-width: 150px;max-height: 100px" src="<?=  Common::getBaseDir() . 'images/' .  (isset($estate->thumbnailName) ? $estate->thumbnailName : $estate->image) ?>" alt="No Image">
+    <img data-toggle="lightbox" data-remote="<?=  Common::getBaseDir() . 'images/' .  $estate->image ?>" class="image-cursor center-block" style="max-width: 150px;max-height: 100px" src="<?=  Common::getBaseDir() . 'images/' .  (isset($estate->thumbnailName) ? $estate->thumbnailName : $estate->image) ?>" alt="No Image">
 </div>
 
 <div class="media-body">

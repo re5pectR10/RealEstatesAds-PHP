@@ -32,7 +32,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/Category.php" />
         <option value="$PROJECT_DIR$/app/models/ViewModels/BasicViewModel.php" />
         <option value="$PROJECT_DIR$/app/models/ViewModels/CategoryViewModel.php" />
         <option value="$PROJECT_DIR$/app/models/ViewModels/CityViewModel.php" />
@@ -52,7 +51,6 @@
         <option value="$PROJECT_DIR$/app/controllers/CityController.php" />
         <option value="$PROJECT_DIR$/app/views/admin/roles.php" />
         <option value="$PROJECT_DIR$/app/views/category/add.php" />
-        <option value="$PROJECT_DIR$/app/views/includes/header.php" />
         <option value="$PROJECT_DIR$/app/views/message/add.php" />
         <option value="$PROJECT_DIR$/app/views/user/register.php" />
         <option value="$PROJECT_DIR$/app/models/Message.php" />
@@ -70,19 +68,21 @@
         <option value="$PROJECT_DIR$/FW/Helpers/Common.php" />
         <option value="$PROJECT_DIR$/app/config/validation.php" />
         <option value="$PROJECT_DIR$/FW/Security/Validation.php" />
-        <option value="$PROJECT_DIR$/app/views/estate/add.php" />
         <option value="$PROJECT_DIR$/app/views/includes/footer.php" />
         <option value="$PROJECT_DIR$/app/models/User.php" />
         <option value="$PROJECT_DIR$/app/controllers/UserController.php" />
         <option value="$PROJECT_DIR$/app/models/Estate.php" />
-        <option value="$PROJECT_DIR$/app/views/estate/details.php" />
         <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/controllers/ImageController.php" />
         <option value="$PROJECT_DIR$/app/models/Image.php" />
         <option value="$PROJECT_DIR$/app/controllers/EstateController.php" />
-        <option value="$PROJECT_DIR$/app/views/_EstateBasic.php" />
         <option value="$PROJECT_DIR$/app/views/message/details.php" />
         <option value="$PROJECT_DIR$/app/config/app.php" />
+        <option value="$PROJECT_DIR$/app/views/includes/header.php" />
+        <option value="$PROJECT_DIR$/app/public/css/custom.css" />
+        <option value="$PROJECT_DIR$/app/views/_EstateBasic.php" />
+        <option value="$PROJECT_DIR$/app/views/estate/details.php" />
+        <option value="$PROJECT_DIR$/app/views/estate/add.php" />
       </list>
     </option>
   </component>
@@ -223,7 +223,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="estate" />
+              <option name="myItemId" value="includes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -241,7 +241,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="estate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -296,7 +300,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -339,11 +343,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="55" selection-start="2971" selection-end="2971" vertical-scroll-proportion="0.6670507" vertical-offset="1036" max-vertical-offset="1904" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/HelpPageController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="868" />
@@ -385,11 +384,6 @@
     <entry file="file://$PROJECT_DIR$/app/views/Help/itemPage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="6" selection-start="34" selection-end="34" vertical-scroll-proportion="0.05875576" vertical-offset="0" max-vertical-offset="868" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/includes/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="46" selection-start="1648" selection-end="1648" vertical-scroll-proportion="0.7050691" vertical-offset="0" max-vertical-offset="1105" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Message.php">
@@ -474,13 +468,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/validation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="58" selection-start="858" selection-end="858" vertical-scroll-proportion="-11.115385" vertical-offset="0" max-vertical-offset="408">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FW/Security/Validation.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="878" column="16" selection-start="41028" selection-end="41028" vertical-scroll-proportion="-25.76923" vertical-offset="14256" max-vertical-offset="15249">
@@ -491,13 +478,6 @@
     <entry file="file://$PROJECT_DIR$/app/views/includes/footer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="14" selection-start="249" selection-end="249" vertical-scroll-proportion="0.21543778" vertical-offset="0" max-vertical-offset="868">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/estate/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="153" selection-start="7236" selection-end="7236" vertical-scroll-proportion="0.780117" vertical-offset="1339" max-vertical-offset="2261">
           <folding />
         </state>
       </provider>
@@ -650,32 +630,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/estate/details.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="40" selection-start="712" selection-end="712" vertical-scroll-proportion="0.23508772" vertical-offset="88" max-vertical-offset="969">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="130" column="61" selection-start="5799" selection-end="5799" vertical-scroll-proportion="-1.3719299" vertical-offset="3349" max-vertical-offset="4420">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/EstateController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="458" column="39" selection-start="16540" selection-end="16540" vertical-scroll-proportion="0.6748538" vertical-offset="7209" max-vertical-offset="10455">
-          <folding>
-            <element signature="e#31#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/_EstateBasic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="137" selection-start="790" selection-end="790" vertical-scroll-proportion="0.21871345" vertical-offset="0" max-vertical-offset="855">
           <folding />
         </state>
       </provider>
@@ -690,6 +647,57 @@
     <entry file="file://$PROJECT_DIR$/app/config/app.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="26" selection-start="583" selection-end="583" vertical-scroll-proportion="0.5875576" vertical-offset="0" max-vertical-offset="1156">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/EstateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="595" column="15" selection-start="20924" selection-end="20924" vertical-scroll-proportion="0.6315789" vertical-offset="9575" max-vertical-offset="10455">
+          <folding>
+            <element signature="e#31#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/validation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="19" selection-start="774" selection-end="774" vertical-scroll-proportion="0.31812865" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/includes/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="35" selection-start="395" selection-end="395" vertical-scroll-proportion="0.21543778" vertical-offset="0" max-vertical-offset="1105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/public/css/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="13" selection-start="792" selection-end="804" vertical-scroll-proportion="0.5816555" vertical-offset="330" max-vertical-offset="1275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/_EstateBasic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="8" selection-start="154" selection-end="157" vertical-scroll-proportion="0.099415205" vertical-offset="0" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/estate/details.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="46" selection-start="2192" selection-end="2192" vertical-scroll-proportion="0.6725146" vertical-offset="88" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/estate/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="48" selection-start="5976" selection-end="5976" vertical-scroll-proportion="0.4619883" vertical-offset="1271" max-vertical-offset="2261">
           <folding />
         </state>
       </provider>

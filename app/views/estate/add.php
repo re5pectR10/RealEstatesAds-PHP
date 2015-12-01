@@ -99,7 +99,7 @@ use \FW\Session\Session;
                     <?= Form::label('Main Image', array('class' => 'control-label')) ?>
                     <?= Form::file(array('name' => 'main_image', 'class' => 'btn btn-primary')) ?>
                     <?php if(isset($estate->image)): ?>
-                        <img data-toggle="lightbox" data-remote="<?=  Common::getBaseDir() . 'images/' .  $estate->image ?>" style="max-width: 300px;max-height: 200px" src="<?=  Common::getBaseDir() . 'images/' . (isset($estate->thumbnailName) ? $estate->thumbnailName : $estate->image) ?>" alt="No Image">
+                        <img class="image-cursor" data-toggle="lightbox" data-remote="<?=  Common::getBaseDir() . 'images/' .  $estate->image ?>" style="max-width: 300px;max-height: 200px" src="<?=  Common::getBaseDir() . 'images/' . (isset($estate->thumbnailName) ? $estate->thumbnailName : $estate->image) ?>" alt="No Image">
                         <a class="btn bg-danger" href="<?= Common::getBaseURL() ?>/admin/image/delete/<?= $estate->main_image_id ?>">Delete</a>
                     <?php endif; ?>
                 </div>
@@ -119,7 +119,7 @@ use \FW\Session\Session;
             <?php if(isset($estate->images)): ?>
                 <div class="media-bottom">
                     <?php foreach($estate->images as $image): ?>
-                        <img data-gallery="gallery" data-toggle="lightbox" data-remote="<?=  Common::getBaseDir() . 'images/' .  $image->name ?>" style="max-width: 150px;max-height: 100px" src="<?=  Common::getBaseDir() . 'images/' .  (isset($image->thumbnailName) ? $image->thumbnailName : $image->name) ?>" alt="No Image">
+                        <img class="image-cursor" data-gallery="gallery" data-toggle="lightbox" data-remote="<?=  Common::getBaseDir() . 'images/' .  $image->name ?>" style="max-width: 150px;max-height: 100px" src="<?=  Common::getBaseDir() . 'images/' .  (isset($image->thumbnailName) ? $image->thumbnailName : $image->name) ?>" alt="No Image">
                         <a class="btn bg-danger" href="<?= Common::getBaseURL() ?>/admin/image/delete/<?= $image->id ?>">Delete</a>
                     <?php endforeach; ?>
                 </div>

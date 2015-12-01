@@ -20,7 +20,7 @@ use \FW\Session\Session;
     <?= Form::script('js/main.js') ?>
 
     <?= Form::style('css/bootstrap.min.css') ?>
-    <?= Form::style('css/shop-homepage.css') ?>
+    <?= Form::style('css/custom.css') ?>
     <?= Form::style('css/ekko-lightbox.min.css') ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

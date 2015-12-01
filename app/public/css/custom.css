@@ -48,6 +48,9 @@ body {
     padding: 0;
 }
 
+.image-cursor {
+    cursor: pointer;
+}
 .thumbnail .caption-full {
     padding: 9px;
     color: #333;
